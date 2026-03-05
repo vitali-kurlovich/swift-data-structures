@@ -84,7 +84,7 @@ public extension RefLinkedList {
 }
 
 public extension RefLinkedList {
-    func insert(_ node: RefListNode<T>, after other: RefListNode<T>) {
+    func insert(node: RefListNode<T>, after other: RefListNode<T>) {
         assert(contains(other))
 
         if other === _last {
@@ -95,7 +95,16 @@ public extension RefLinkedList {
         }
     }
 
-    func insert(_ node: RefListNode<T>, before other: RefListNode<T>) {
+    @discardableResult
+    func insert(_ value: T, after other: RefListNode<T>) -> RefListNode<T> {
+        let node = RefListNode<T>(value)
+        insert(node: node, after: other)
+        return node
+    }
+}
+
+public extension RefLinkedList {
+    func insert(node: RefListNode<T>, before other: RefListNode<T>) {
         assert(contains(other))
 
         if other === _first {
@@ -104,6 +113,13 @@ public extension RefLinkedList {
         } else {
             other.prepend(node)
         }
+    }
+
+    @discardableResult
+    func insert(_ value: T, before other: RefListNode<T>) -> RefListNode<T> {
+        let node = RefListNode<T>(value)
+        insert(node: node, before: other)
+        return node
     }
 }
 

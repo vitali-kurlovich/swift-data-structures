@@ -104,7 +104,7 @@ extension RefListNode {
 
 extension RefListNode {
     func disconnect() -> RefListNode<T>? {
-        guard let next = self.next else {
+        guard let next = next else {
             return nil
         }
 

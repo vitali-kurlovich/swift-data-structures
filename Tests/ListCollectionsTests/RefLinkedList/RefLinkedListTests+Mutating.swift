@@ -191,9 +191,7 @@ extension RefLinkedListTests {
         #expect(node0.prev === nil)
         #expect(node0.next === nil)
 
-        let node1 = RefListNode(1)
-
-        list.insert(node1, after: node0)
+        let node1 = list.insert(1, after: node0)
 
         #expect(list.first === node0)
         #expect(list.last === node1)
@@ -204,8 +202,7 @@ extension RefLinkedListTests {
         #expect(node1.prev === node0)
         #expect(node1.next === nil)
 
-        let node2 = RefListNode(2)
-        list.insert(node2, after: node0)
+        let node2 = list.insert(2, after: node0)
 
         #expect(list.first === node0)
         #expect(list.last === node1)
@@ -219,8 +216,7 @@ extension RefLinkedListTests {
         #expect(node1.prev === node2)
         #expect(node1.next === nil)
 
-        let node3 = RefListNode(2)
-        list.insert(node3, after: node1)
+        let node3 = list.insert(3, after: node1)
 
         #expect(list.first === node0)
         #expect(list.last === node3)
@@ -243,7 +239,7 @@ extension RefLinkedListTests {
 
         node2.append(node3)
 
-        list.insert(node2, after: node1)
+        list.insert(node: node2, after: node1)
 
         #expect(list.first === node0)
         #expect(list.last === node3)
@@ -266,7 +262,7 @@ extension RefLinkedListTests {
 
         node2.append(node3)
 
-        list.insert(node2, after: node0)
+        list.insert(node: node2, after: node0)
 
         #expect(list.first === node0)
         #expect(list.last === node1)
@@ -297,9 +293,7 @@ extension RefLinkedListTests {
         #expect(node0.prev === nil)
         #expect(node0.next === nil)
 
-        let node1 = RefListNode(1)
-
-        list.insert(node1, before: node0)
+        let node1 = list.insert(1, before: node0)
 
         // node1 <-> node0
 
@@ -312,8 +306,7 @@ extension RefLinkedListTests {
         #expect(node0.prev === node1)
         #expect(node0.next == nil)
 
-        let node2 = RefListNode(2)
-        list.insert(node2, before: node0)
+        let node2 = list.insert(2, before: node0)
 
         // node1 <-> node2 <-> node0
 
@@ -329,8 +322,7 @@ extension RefLinkedListTests {
         #expect(node0.prev === node2)
         #expect(node0.next == nil)
 
-        let node3 = RefListNode(3)
-        list.insert(node3, before: node1)
+        let node3 = list.insert(3, before: node1)
 
         // node3 <-> node1 <-> node2 <-> node0
 
@@ -359,7 +351,7 @@ extension RefLinkedListTests {
 
         // node1 <-> node2
 
-        list.insert(node1, before: node0)
+        list.insert(node: node1, before: node0)
 
         //  node1 <-> node2 <-> node0 <-> node3
 
@@ -635,7 +627,7 @@ extension RefLinkedListTests {
         #expect(node1.next == nil)
 
         result = RefLinkedList()
-        
+
         list.append(node: node1)
         let node2 = list.append(2)
 
@@ -690,7 +682,7 @@ extension RefLinkedListTests {
         #expect(node2.next == nil)
 
         result = .init()
-        
+
         list.append(node: node2)
         let node3 = list.append(3)
 
