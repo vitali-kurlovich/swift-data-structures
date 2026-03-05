@@ -1,1 +1,1 @@
-# swift-algorithms
+# swift-data-structures
