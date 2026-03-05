@@ -9,6 +9,24 @@ import Testing
 struct LinkedListTests {}
 
 extension LinkedListTests {
+    @Test("Init with value")
+    func initWithValue() throws {
+        let list = LinkedList<Int>(42)
+
+        #expect(list.isEmpty == false)
+
+        let node = try #require(list.first)
+
+        #expect(list.first === node)
+        #expect(list.last === node)
+
+        #expect(node.value == 42)
+        #expect(node.prev == nil)
+        #expect(node.next == nil)
+    }
+}
+
+extension LinkedListTests {
     @Test("Empty")
     func empty() throws {
         let list = LinkedList<Int>()

@@ -20,6 +20,11 @@ public extension LinkedList {
     convenience init() {
         self.init(first: nil, last: nil)
     }
+
+    convenience init(_ value: T) {
+        let node = ListNode(value)
+        self.init(first: node, last: node)
+    }
 }
 
 public extension LinkedList {
