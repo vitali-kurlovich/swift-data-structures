@@ -5,17 +5,17 @@
 @testable import ListCollections
 import Testing
 
-extension RefLinkedListTests {
+extension LinkedListTests {
     @Test("Append")
     func append() throws {
-        let list = RefLinkedList<Int>()
+        let list = LinkedList<Int>()
         let node0 = list.append(42)
         let node1 = list.append(54)
 
-        let node2 = RefListNode(60)
-        let node3 = RefListNode(61)
-        let node4 = RefListNode(62)
-        let node5 = RefListNode(63)
+        let node2 = ListNode(60)
+        let node3 = ListNode(61)
+        let node4 = ListNode(62)
+        let node5 = ListNode(63)
 
         node2.setNext(node3)
         node3.setNext(node4)
@@ -48,10 +48,10 @@ extension RefLinkedListTests {
     }
 }
 
-extension RefLinkedListTests {
+extension LinkedListTests {
     @Test("Prepend")
     func prepend() throws {
-        let list = RefLinkedList<Int>()
+        let list = LinkedList<Int>()
         let node0 = list.prepend(42)
 
         #expect(list.first === node0)
@@ -62,10 +62,10 @@ extension RefLinkedListTests {
         #expect(list.first === node1)
         #expect(list.last === node0)
 
-        let node2 = RefListNode(60)
-        let node3 = RefListNode(61)
-        let node4 = RefListNode(62)
-        let node5 = RefListNode(63)
+        let node2 = ListNode(60)
+        let node3 = ListNode(61)
+        let node4 = ListNode(62)
+        let node5 = ListNode(63)
 
         node2.setNext(node3)
         node3.setNext(node4)
@@ -98,10 +98,10 @@ extension RefLinkedListTests {
     }
 }
 
-extension RefLinkedListTests {
+extension LinkedListTests {
     @Test("Remove")
     func remove() throws {
-        let list = RefLinkedList<Int>()
+        let list = LinkedList<Int>()
         let node0 = list.append(42)
 
         list.remove(node0)
@@ -133,7 +133,7 @@ extension RefLinkedListTests {
 
     @Test("Remove All")
     func removeAll() throws {
-        let list = RefLinkedList<Int>()
+        let list = LinkedList<Int>()
         var node0 = list.append(0)
         var node1 = list.append(1)
         var node2 = list.append(2)
@@ -179,10 +179,10 @@ extension RefLinkedListTests {
     }
 }
 
-extension RefLinkedListTests {
+extension LinkedListTests {
     @Test("Insert After")
     func insertAfter() throws {
-        let list = RefLinkedList<Int>()
+        let list = LinkedList<Int>()
         let node0 = list.append(0)
 
         #expect(list.first === node0)
@@ -282,7 +282,7 @@ extension RefLinkedListTests {
 
     @Test("Insert Before")
     func insertBefore() throws {
-        let list = RefLinkedList<Int>()
+        let list = LinkedList<Int>()
         let node0 = list.append(0)
 
         // node0
@@ -372,10 +372,10 @@ extension RefLinkedListTests {
     }
 }
 
-extension RefLinkedListTests {
+extension LinkedListTests {
     @Test("Swap")
     func swap() throws {
-        let list = RefLinkedList<Int>()
+        let list = LinkedList<Int>()
 
         let node0 = list.append(0)
         let node1 = list.append(1)
@@ -565,10 +565,10 @@ extension RefLinkedListTests {
     }
 }
 
-extension RefLinkedListTests {
+extension LinkedListTests {
     @Test("Disconnect")
     func disconnect() throws {
-        let list = RefLinkedList<Int>()
+        let list = LinkedList<Int>()
         let node0 = list.append(0)
 
         var result = list.disconnect(by: node0)
@@ -626,7 +626,7 @@ extension RefLinkedListTests {
         #expect(node1.prev == nil)
         #expect(node1.next == nil)
 
-        result = RefLinkedList()
+        result = LinkedList()
 
         list.append(node: node1)
         let node2 = list.append(2)

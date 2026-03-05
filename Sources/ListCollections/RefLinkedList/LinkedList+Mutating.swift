@@ -2,9 +2,9 @@
 //  Created by Vitali Kurlovich on 4.03.26.
 //
 
-public extension RefLinkedList {
+public extension LinkedList {
     @discardableResult
-    func remove(_ node: RefListNode<T>) -> RefListNode<T> {
+    func remove(_ node: ListNode<T>) -> ListNode<T> {
         assert(contains(node))
 
         if node === _first {
@@ -35,8 +35,8 @@ public extension RefLinkedList {
     }
 }
 
-public extension RefLinkedList {
-    func append(node: RefListNode<T>) {
+public extension LinkedList {
+    func append(node: ListNode<T>) {
         if isEmpty {
             _first = node.first
             _last = node.last
@@ -53,15 +53,15 @@ public extension RefLinkedList {
     }
 
     @discardableResult
-    func append(_ value: T) -> RefListNode<T> {
-        let node = RefListNode(value)
+    func append(_ value: T) -> ListNode<T> {
+        let node = ListNode(value)
         append(node: node)
         return node
     }
 }
 
-public extension RefLinkedList {
-    func prepend(node: RefListNode<T>) {
+public extension LinkedList {
+    func prepend(node: ListNode<T>) {
         if isEmpty {
             _first = node.first
             _last = node.last
@@ -76,15 +76,15 @@ public extension RefLinkedList {
     }
 
     @discardableResult
-    func prepend(_ value: T) -> RefListNode<T> {
-        let node = RefListNode(value)
+    func prepend(_ value: T) -> ListNode<T> {
+        let node = ListNode(value)
         prepend(node: node)
         return node
     }
 }
 
-public extension RefLinkedList {
-    func insert(node: RefListNode<T>, after other: RefListNode<T>) {
+public extension LinkedList {
+    func insert(node: ListNode<T>, after other: ListNode<T>) {
         assert(contains(other))
 
         if other === _last {
@@ -96,15 +96,15 @@ public extension RefLinkedList {
     }
 
     @discardableResult
-    func insert(_ value: T, after other: RefListNode<T>) -> RefListNode<T> {
-        let node = RefListNode<T>(value)
+    func insert(_ value: T, after other: ListNode<T>) -> ListNode<T> {
+        let node = ListNode<T>(value)
         insert(node: node, after: other)
         return node
     }
 }
 
-public extension RefLinkedList {
-    func insert(node: RefListNode<T>, before other: RefListNode<T>) {
+public extension LinkedList {
+    func insert(node: ListNode<T>, before other: ListNode<T>) {
         assert(contains(other))
 
         if other === _first {
@@ -116,15 +116,15 @@ public extension RefLinkedList {
     }
 
     @discardableResult
-    func insert(_ value: T, before other: RefListNode<T>) -> RefListNode<T> {
-        let node = RefListNode<T>(value)
+    func insert(_ value: T, before other: ListNode<T>) -> ListNode<T> {
+        let node = ListNode<T>(value)
         insert(node: node, before: other)
         return node
     }
 }
 
-public extension RefLinkedList {
-    func swap(_ node: RefListNode<T>, with other: RefListNode<T>) {
+public extension LinkedList {
+    func swap(_ node: ListNode<T>, with other: ListNode<T>) {
         guard node !== other else { return }
 
         assert(contains(node))
@@ -150,14 +150,14 @@ public extension RefLinkedList {
     }
 }
 
-public extension RefLinkedList {
-    func disconnect(by node: RefListNode<T>) -> RefLinkedList<T> {
+public extension LinkedList {
+    func disconnect(by node: ListNode<T>) -> LinkedList<T> {
         assert(contains(node))
 
         let second = node.disconnect()
 
         _last = node
 
-        return RefLinkedList<T>(first: second, last: second?.last)
+        return LinkedList<T>(first: second, last: second?.last)
     }
 }

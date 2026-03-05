@@ -2,15 +2,15 @@
 //  Created by Vitali Kurlovich on 4.03.26.
 //
 
-public extension RefListNode {
-    func copy() -> RefListNode<T> {
-        let root = RefListNode(value)
+public extension ListNode {
+    func copy() -> ListNode<T> {
+        let root = ListNode(value)
         var parent = root
 
         var current = prev
         while let node = current {
             current = current?.prev
-            let new_node = RefListNode(node.value)
+            let new_node = ListNode(node.value)
             parent.prepend(new_node)
             parent = new_node
         }
@@ -20,7 +20,7 @@ public extension RefListNode {
 
         while let node = current {
             current = current?.next
-            let new_node = RefListNode(node.value)
+            let new_node = ListNode(node.value)
             parent.append(new_node)
             parent = new_node
         }

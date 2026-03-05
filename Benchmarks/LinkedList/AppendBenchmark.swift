@@ -13,7 +13,7 @@ struct LinkedListAppendBenchmark {
     }
 
     func run() {
-        let linkedList = RefLinkedList<Int>()
+        let linkedList = LinkedList<Int>()
 
         for value in 0 ..< count {
             linkedList.append(value)

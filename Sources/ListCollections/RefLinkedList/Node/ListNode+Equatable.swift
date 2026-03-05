@@ -2,8 +2,8 @@
 //  Created by Vitali Kurlovich on 4.03.26.
 //
 
-extension RefListNode: Equatable where T: Equatable {
-    public static func == (lhs: RefListNode<T>, rhs: RefListNode<T>) -> Bool {
+extension ListNode: Equatable where T: Equatable {
+    public static func == (lhs: ListNode<T>, rhs: ListNode<T>) -> Bool {
         if lhs === rhs {
             return true
         }

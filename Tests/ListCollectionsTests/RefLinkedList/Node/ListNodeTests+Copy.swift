@@ -5,15 +5,15 @@
 @testable import ListCollections
 import Testing
 
-extension RefListNodeTests {
+extension ListNodeTests {
     @Test("Copy")
     func copy() throws {
-        let node0 = RefListNode(0)
+        let node0 = ListNode(0)
         #expect(node0.copy() !== node0)
         #expect(node0.copy().value == node0.value)
 
-        let nodeR = RefListNode(1)
-        let nodeL = RefListNode(2)
+        let nodeR = ListNode(1)
+        let nodeL = ListNode(2)
 
         node0.append(nodeR)
         node0.prepend(nodeL)

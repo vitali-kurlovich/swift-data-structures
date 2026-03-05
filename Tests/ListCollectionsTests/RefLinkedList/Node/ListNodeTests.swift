@@ -6,26 +6,26 @@
 import Testing
 
 @Suite("ListNode")
-struct RefListNodeTests {}
+struct ListNodeTests {}
 
-extension RefListNodeTests {
+extension ListNodeTests {
     @Test("Cycles")
     func isCyclic() throws {
-        let first = RefListNode(10)
+        let first = ListNode(10)
 
         first._next = first
 
-        #expect(RefListNode.isCyclic(node: first))
+        #expect(ListNode.isCyclic(node: first))
 
-        let second = RefListNode(20)
-        let last = RefListNode(30)
+        let second = ListNode(20)
+        let last = ListNode(30)
 
         first._next = second
         second._prev = first
 
         first._prev = second
 
-        #expect(RefListNode.isCyclic(node: first))
+        #expect(ListNode.isCyclic(node: first))
 
         first._next = second
         second._prev = first
@@ -36,25 +36,25 @@ extension RefListNodeTests {
         last._next = first
         first._prev = last
 
-        #expect(RefListNode.isCyclic(node: first))
-        #expect(RefListNode.isCyclic(node: second))
-        #expect(RefListNode.isCyclic(node: last))
+        #expect(ListNode.isCyclic(node: first))
+        #expect(ListNode.isCyclic(node: second))
+        #expect(ListNode.isCyclic(node: last))
     }
 }
 
-extension RefListNodeTests {
+extension ListNodeTests {
     @Test("Count")
     func count() throws {
-        let first = RefListNode(10)
+        let first = ListNode(10)
         #expect(first.count == 1)
 
-        let second = RefListNode(20)
+        let second = ListNode(20)
         first.setNext(second)
 
         #expect(first.count == 2)
         #expect(second.count == 2)
 
-        let last = RefListNode(30)
+        let last = ListNode(30)
         last.setPrev(second)
 
         #expect(first.count == 3)
@@ -63,21 +63,21 @@ extension RefListNodeTests {
     }
 }
 
-extension RefListNodeTests {
+extension ListNodeTests {
     @Test("First")
     func first() throws {
-        let first = RefListNode(10)
+        let first = ListNode(10)
         #expect(first.first === first)
         #expect(first.isFirst)
 
-        let second = RefListNode(20)
+        let second = ListNode(20)
         first.setNext(second)
         #expect(first.first === first)
         #expect(second.first === first)
         #expect(first.isFirst)
         #expect(second.isFirst == false)
 
-        let last = RefListNode(30)
+        let last = ListNode(30)
         last.setPrev(second)
 
         #expect(first.first === first)
@@ -91,11 +91,11 @@ extension RefListNodeTests {
 
     @Test("Last")
     func last() throws {
-        let first = RefListNode(10)
+        let first = ListNode(10)
         #expect(first.last === first)
         #expect(first.isLast)
 
-        let second = RefListNode(20)
+        let second = ListNode(20)
         first.setNext(second)
         #expect(first.last === second)
         #expect(second.last === second)
@@ -103,7 +103,7 @@ extension RefListNodeTests {
         #expect(first.isLast == false)
         #expect(second.isLast)
 
-        let last = RefListNode(30)
+        let last = ListNode(30)
         last.setPrev(second)
 
         #expect(first.last === last)
@@ -116,13 +116,13 @@ extension RefListNodeTests {
     }
 }
 
-extension RefListNodeTests {
+extension ListNodeTests {
     @Test("Contains")
     func contains() throws {
-        let first = RefListNode(10)
+        let first = ListNode(10)
         #expect(first.contains(first))
 
-        let second = RefListNode(10)
+        let second = ListNode(10)
 
         #expect(first.contains(second) == false)
 
@@ -131,7 +131,7 @@ extension RefListNodeTests {
         #expect(first.contains(second))
         #expect(second.contains(first))
 
-        let last = RefListNode(30)
+        let last = ListNode(30)
 
         #expect(first.contains(last) == false)
         #expect(second.contains(last) == false)

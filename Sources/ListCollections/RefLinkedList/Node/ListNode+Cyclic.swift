@@ -2,8 +2,8 @@
 //  Created by Vitali Kurlovich on 2.03.26.
 //
 
-extension RefListNode {
-    static func isCyclic(node: RefListNode<T>) -> Bool {
+extension ListNode {
+    static func isCyclic(node: ListNode<T>) -> Bool {
         var current = node
 
         while current.next != nil {

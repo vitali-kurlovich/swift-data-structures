@@ -5,10 +5,10 @@
 @testable import ListCollections
 import Testing
 
-extension RefLinkedListTests {
+extension LinkedListTests {
     @Test("Copy")
     func copy() throws {
-        let list = RefLinkedList<Int>()
+        let list = LinkedList<Int>()
 
         #expect(list.copy() == list)
         #expect(list.copy() !== list)

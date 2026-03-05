@@ -2,27 +2,27 @@
 //  Created by Vitali Kurlovich on 2.03.26.
 //
 
-public final class RefListNode<T> {
+public final class ListNode<T> {
     public var value: T
-    var _prev: RefListNode<T>?
-    var _next: RefListNode<T>?
+    var _prev: ListNode<T>?
+    var _next: ListNode<T>?
 
     public init(_ value: T) {
         self.value = value
     }
 }
 
-public extension RefListNode {
-    var next: RefListNode<T>? {
+public extension ListNode {
+    var next: ListNode<T>? {
         _next
     }
 
-    var prev: RefListNode<T>? {
+    var prev: ListNode<T>? {
         _prev
     }
 }
 
-public extension RefListNode {
+public extension ListNode {
     var count: Int {
         var count = 1
 
@@ -44,8 +44,8 @@ public extension RefListNode {
     }
 }
 
-public extension RefListNode {
-    var first: RefListNode<T> {
+public extension ListNode {
+    var first: ListNode<T> {
         var current = self
 
         while let prev = current.prev {
@@ -60,8 +60,8 @@ public extension RefListNode {
     }
 }
 
-public extension RefListNode {
-    var last: RefListNode<T> {
+public extension ListNode {
+    var last: ListNode<T> {
         var current = self
 
         while let next = current.next {
@@ -76,8 +76,8 @@ public extension RefListNode {
     }
 }
 
-public extension RefListNode {
-    func contains(_ node: RefListNode<T>) -> Bool {
+public extension ListNode {
+    func contains(_ node: ListNode<T>) -> Bool {
         var current = self
 
         if current === node {

@@ -2,13 +2,13 @@
 //  Created by Vitali Kurlovich on 3.03.26.
 //
 
-extension RefListNode {
+extension ListNode {
     func remove() {
         defer {
             self._prev = nil
             self._next = nil
 
-            assert(RefListNode.isCyclic(node: self) == false)
+            assert(ListNode.isCyclic(node: self) == false)
         }
 
         let prevNode = prev
@@ -19,10 +19,10 @@ extension RefListNode {
     }
 }
 
-extension RefListNode {
-    func append(_ node: RefListNode<T>) {
+extension ListNode {
+    func append(_ node: ListNode<T>) {
         defer {
-            assert(RefListNode.isCyclic(node: self) == false)
+            assert(ListNode.isCyclic(node: self) == false)
         }
         assert(contains(node) == false)
 
@@ -39,9 +39,9 @@ extension RefListNode {
         right?._prev = last
     }
 
-    func prepend(_ node: RefListNode<T>) {
+    func prepend(_ node: ListNode<T>) {
         defer {
-            assert(RefListNode.isCyclic(node: self) == false)
+            assert(ListNode.isCyclic(node: self) == false)
         }
 
         assert(contains(node) == false)
@@ -60,10 +60,10 @@ extension RefListNode {
     }
 }
 
-extension RefListNode {
-    func swap(with node: RefListNode<T>) {
+extension ListNode {
+    func swap(with node: ListNode<T>) {
         defer {
-            assert(RefListNode.isCyclic(node: self) == false)
+            assert(ListNode.isCyclic(node: self) == false)
         }
 
         guard self !== node else { return }
@@ -102,8 +102,8 @@ extension RefListNode {
     }
 }
 
-extension RefListNode {
-    func disconnect() -> RefListNode<T>? {
+extension ListNode {
+    func disconnect() -> ListNode<T>? {
         guard let next = next else {
             return nil
         }

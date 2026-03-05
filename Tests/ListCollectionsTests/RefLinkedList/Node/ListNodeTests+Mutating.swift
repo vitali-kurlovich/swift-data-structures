@@ -5,12 +5,12 @@
 @testable import ListCollections
 import Testing
 
-extension RefListNodeTests {
+extension ListNodeTests {
     @Test("Remove")
     func remove() throws {
-        let first = RefListNode(10)
-        let second = RefListNode(10)
-        let last = RefListNode(30)
+        let first = ListNode(10)
+        let second = ListNode(10)
+        let last = ListNode(30)
 
         first.append(second)
         second.append(last)
@@ -91,12 +91,12 @@ extension RefListNodeTests {
     }
 }
 
-extension RefListNodeTests {
+extension ListNodeTests {
     @Test("Append")
     func append() throws {
-        let node0 = RefListNode(10)
-        let node1 = RefListNode(10)
-        let node2 = RefListNode(30)
+        let node0 = ListNode(10)
+        let node1 = ListNode(10)
+        let node2 = ListNode(30)
 
         node0.append(node1)
 
@@ -124,8 +124,8 @@ extension RefListNodeTests {
         node0.append(node1)
         node1.append(node2)
 
-        let begin = RefListNode(100)
-        let end = RefListNode(200)
+        let begin = ListNode(100)
+        let end = ListNode(200)
 
         begin.append(end)
 
@@ -155,9 +155,9 @@ extension RefListNodeTests {
 
     @Test("Prepend")
     func prepend() throws {
-        let node0 = RefListNode(10)
-        let node1 = RefListNode(10)
-        let node2 = RefListNode(30)
+        let node0 = ListNode(10)
+        let node1 = ListNode(10)
+        let node2 = ListNode(30)
 
         node2.prepend(node1)
 
@@ -185,8 +185,8 @@ extension RefListNodeTests {
         node0.append(node1)
         node1.append(node2)
 
-        let begin = RefListNode(100)
-        let end = RefListNode(200)
+        let begin = ListNode(100)
+        let end = ListNode(200)
 
         end.prepend(begin)
 
@@ -215,12 +215,12 @@ extension RefListNodeTests {
     }
 }
 
-extension RefListNodeTests {
+extension ListNodeTests {
     @Test("Swap")
     func swap() throws {
-        let node0 = RefListNode(0)
-        let node1 = RefListNode(1)
-        let node2 = RefListNode(2)
+        let node0 = ListNode(0)
+        let node1 = ListNode(1)
+        let node2 = ListNode(2)
 
         node0.swap(with: node0)
 
@@ -250,7 +250,7 @@ extension RefListNodeTests {
         #expect(node0.prev === node1)
         #expect(node0.next == nil)
 
-        let node3 = RefListNode(3)
+        let node3 = ListNode(3)
         node0.remove()
         node1.remove()
         node2.remove()
@@ -299,7 +299,7 @@ extension RefListNodeTests {
         #expect(node3.prev === node2)
         #expect(node3.next == nil)
 
-        let node4 = RefListNode(4)
+        let node4 = ListNode(4)
 
         node3.append(node4)
 
@@ -337,12 +337,12 @@ extension RefListNodeTests {
     }
 }
 
-extension RefListNodeTests {
+extension ListNodeTests {
     @Test("Disconnect")
     func disconnect() throws {
-        let node0 = RefListNode(0)
-        let node1 = RefListNode(1)
-        let node2 = RefListNode(2)
+        let node0 = ListNode(0)
+        let node1 = ListNode(1)
+        let node2 = ListNode(2)
 
         var result = node0.disconnect()
         //  node0 || nil

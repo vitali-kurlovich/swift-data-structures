@@ -6,34 +6,34 @@
 import Testing
 
 @Suite("LinkedList")
-struct RefLinkedListTests {}
+struct LinkedListTests {}
 
-extension RefLinkedListTests {
+extension LinkedListTests {
     @Test("Empty")
     func empty() throws {
-        let list = RefLinkedList<Int>()
+        let list = LinkedList<Int>()
 
         #expect(list.isEmpty)
 
-        let node = RefListNode(42)
+        let node = ListNode(42)
         list.append(node: node)
         #expect(list.isEmpty == false)
     }
 }
 
-extension RefLinkedListTests {
+extension LinkedListTests {
     @Test("Count")
     func count() throws {
-        let list = RefLinkedList<Int>()
+        let list = LinkedList<Int>()
 
         #expect(list.count == 0)
 
-        let node = RefListNode(42)
+        let node = ListNode(42)
         list.append(node: node)
         #expect(list.count == 1)
 
-        let first = RefListNode(10)
-        let second = RefListNode(20)
+        let first = ListNode(10)
+        let second = ListNode(20)
         first.setNext(second)
 
         list.append(node: first)
@@ -41,17 +41,17 @@ extension RefLinkedListTests {
     }
 }
 
-extension RefLinkedListTests {
+extension LinkedListTests {
     @Test("Contains")
     func contains() throws {
-        let list = RefLinkedList<Int>()
+        let list = LinkedList<Int>()
 
-        let node0 = RefListNode(42)
+        let node0 = ListNode(42)
         #expect(list.contains(node0) == false)
 
         list.append(node: node0)
 
-        let node1 = RefListNode(42)
+        let node1 = ListNode(42)
 
         #expect(list.contains(node0))
         #expect(list.contains(node1) == false)
@@ -71,7 +71,7 @@ extension RefLinkedListTests {
 
         #expect(list.contains(node3))
 
-        let node4 = RefListNode(66)
+        let node4 = ListNode(66)
 
         node3.prepend(node4)
 

@@ -5,11 +5,11 @@
 @testable import ListCollections
 import Testing
 
-extension RefLinkedListTests {
+extension LinkedListTests {
     @Test("Equatable")
     func equal() throws {
-        let left = RefLinkedList<Int>()
-        let right = RefLinkedList<Int>()
+        let left = LinkedList<Int>()
+        let right = LinkedList<Int>()
 
         #expect(left == right)
         #expect(left !== right)
