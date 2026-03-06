@@ -36,6 +36,7 @@ public extension LinkedList {
 }
 
 public extension LinkedList {
+    @discardableResult
     func dropFirst() -> ListNode<T>? {
         guard let first else {
             return nil
@@ -44,6 +45,7 @@ public extension LinkedList {
         return remove(first)
     }
 
+    @discardableResult
     func dropLast() -> ListNode<T>? {
         guard let last else {
             return nil

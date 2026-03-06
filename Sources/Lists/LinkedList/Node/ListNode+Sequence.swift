@@ -15,7 +15,7 @@ public struct ListNodeIterator<T>: IteratorProtocol {
 
     var node: ListNode<T>?
 
-    public init(_ node: ListNode<T>) {
+    public init(_ node: ListNode<T>?) {
         self.node = node
     }
 

@@ -55,16 +55,3 @@ public extension LinkedList {
         first?.contains(node) ?? false
     }
 }
-
-public extension LinkedList {
-    func copy() -> LinkedList<T> {
-        let first = first?.copy()
-        return LinkedList<T>(first: first, last: first?.last)
-    }
-}
-
-extension LinkedList: Equatable where T: Equatable {
-    public static func == (lhs: LinkedList<T>, rhs: LinkedList<T>) -> Bool {
-        return lhs === rhs || lhs.first == rhs.first
-    }
-}
