@@ -16,17 +16,17 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest]
-        swift: ["6.2.3"]
     
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - uses: SwiftyLab/setup-swift@latest
-      with:
-        swift-version: ${{ matrix.swift }}
     
     - name: Build
       run: swift build -v
 
     - name: Run tests
       run: swift test -v
+
+    - name: Benchmarks
+      run: swift run -c release
 
