@@ -7,13 +7,14 @@ import Lists
 public final class LRUCache<Key: Hashable, T> {
     public let maxCacheSize: Int
 
+    let storage = LinkedList<KeyValue>()
+    var map: [Key: MapValue]
+
     public init(maxCacheSize: Int = 64) {
         assert(maxCacheSize > 0)
         self.maxCacheSize = maxCacheSize
+        map = .init()
     }
-
-    let storage = LinkedList<KeyValue>()
-    var map: [Key: MapValue] = [:]
 }
 
 extension LRUCache {
