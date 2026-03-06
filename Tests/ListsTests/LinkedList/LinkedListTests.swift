@@ -52,7 +52,7 @@ extension LinkedListTests {
 
         let first = ListNode(10)
         let second = ListNode(20)
-        first.setNext(second)
+        first.append(second)
 
         list.append(node: first)
         #expect(list.count == 3)

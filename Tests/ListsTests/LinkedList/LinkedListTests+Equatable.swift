@@ -2,7 +2,7 @@
 //  Created by Vitali Kurlovich on 5.03.26.
 //
 
-@testable import Lists
+import Lists
 import Testing
 
 extension LinkedListTests {
