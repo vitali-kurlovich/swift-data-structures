@@ -39,4 +39,14 @@ extension LinkedListTests {
 
         #expect(list.map { $0 } == [])
     }
+
+    @Test("Init with Sequence")
+    func initWithSequence() throws {
+        let list = LinkedList<Int>([0, 2, 4])
+
+        #expect(list.map { $0 } == [0, 2, 4])
+
+        #expect(list.first?.value == 0)
+        #expect(list.last?.value == 4)
+    }
 }
