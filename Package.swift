@@ -17,6 +17,8 @@ let package = Package(
             name: "Lists",
             targets: ["Lists"]
         ),
+
+        .library(name: "Caches", targets: ["Caches"]),
     ],
     dependencies: [
         .package(url: "https://github.com/vitali-kurlovich/Benchmarks", from: "0.2.0"),
@@ -29,10 +31,20 @@ let package = Package(
         .target(
             name: "Lists"
         ),
-        .testTarget(
-            name: "ListTests",
+
+        .target(
+            name: "Caches",
             dependencies: ["Lists"]
         ),
+        .testTarget(
+            name: "ListsTests",
+            dependencies: ["Lists"]
+        ),
+        .testTarget(
+            name: "CachesTests",
+            dependencies: ["Lists", "Caches"]
+        ),
+
         .executableTarget(
             name: "BenchmarkCLI",
             dependencies: [

@@ -2,7 +2,7 @@
 //  Created by Vitali Kurlovich on 2.03.26.
 //
 
-@testable import ListCollections
+@testable import Lists
 import Testing
 
 @Suite("ListNode")

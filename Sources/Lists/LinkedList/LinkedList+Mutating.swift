@@ -36,6 +36,24 @@ public extension LinkedList {
 }
 
 public extension LinkedList {
+    func dropFirst() -> ListNode<T>? {
+        guard let first else {
+            return nil
+        }
+
+        return remove(first)
+    }
+
+    func dropLast() -> ListNode<T>? {
+        guard let last else {
+            return nil
+        }
+
+        return remove(last)
+    }
+}
+
+public extension LinkedList {
     func append(node: ListNode<T>) {
         if isEmpty {
             _first = node.first
