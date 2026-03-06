@@ -3,7 +3,7 @@
 //
 
 import Benchmarks
-import ListCollections
+import Lists
 
 struct LinkedListAppendBenchmark {
     let count: Int
