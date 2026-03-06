@@ -65,7 +65,7 @@ public extension LRUCache {
     func push(key: Key, value: T) {
         let stored = KeyValue(key: key, value: value)
 
-        if map.count < maxCacheSize {
+        if count < maxCacheSize {
             let node = storage.prepend(stored)
             map[key] = node
         } else {
