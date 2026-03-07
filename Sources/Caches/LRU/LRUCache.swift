@@ -4,15 +4,28 @@
 
 import Lists
 
+/**
+ An LRU (Least Recently Used) Cache is a data structure that stores a limited number of items, automatically evicting the oldest, least recently accessed data when capacity is reached.
+ */
+
 public final class LRUCache<Key: Hashable, T> {
-    public let maxCacheSize: Int
+    /// The name of the cache.
+    var name: String
+
+    /// The maximum number of objects the cache should hold.
+    public var countLimit: Int {
+        didSet {
+            assert(countLimit > 0)
+        }
+    }
 
     let storage = LinkedList<KeyValue>()
     var map: [Key: MapValue]
 
-    public init(maxCacheSize: Int = 64) {
-        assert(maxCacheSize > 0)
-        self.maxCacheSize = maxCacheSize
+    public init(name: String = "", countLimit: Int) {
+        assert(countLimit > 0)
+        self.name = name
+        self.countLimit = countLimit
         map = .init()
     }
 }
@@ -27,6 +40,7 @@ extension LRUCache {
 }
 
 public extension LRUCache {
+    /// The maximum number of objects the cache should hold.
     var count: Int {
         map.count
     }
@@ -45,13 +59,14 @@ public extension LRUCache {
             if let newValue {
                 push(key: key, value: newValue)
             } else {
-                remove(by: key)
+                remove(for: key)
             }
         }
     }
 }
 
 public extension LRUCache {
+    /// Returns the value associated with a given key.
     func pull(key: Key) -> T? {
         guard let node = map[key] else {
             return nil
@@ -66,7 +81,7 @@ public extension LRUCache {
     func push(key: Key, value: T) {
         let stored = KeyValue(key: key, value: value)
 
-        if count < maxCacheSize {
+        if count < countLimit {
             let node = storage.prepend(stored)
             map[key] = node
         } else {
@@ -80,12 +95,14 @@ public extension LRUCache {
 }
 
 public extension LRUCache {
+    /// Empties the cache.
     func removeAll() {
         storage.removeAll()
         map.removeAll()
     }
 
-    func remove(by key: Key) {
+    /// Removes the value of the specified key in the cache.
+    func remove(for key: Key) {
         guard let node = map[key] else {
             return
         }

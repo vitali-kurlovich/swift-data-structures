@@ -12,7 +12,7 @@ struct LRUCacheTests {}
 extension LRUCacheTests {
     @Test("Push")
     func push() {
-        let cache = LRUCache<Int, String>(maxCacheSize: 4)
+        let cache = LRUCache<Int, String>(countLimit: 4)
 
         cache[0] = "0"
         #expect(cache.count == 1)
