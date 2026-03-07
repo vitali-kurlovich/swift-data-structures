@@ -6,13 +6,13 @@
 @testable import Lists
 import Testing
 
-@Suite("LRUCache")
-struct LRUCacheTests {}
+@Suite("Cache")
+struct CacheTests {}
 
-extension LRUCacheTests {
+extension CacheTests {
     @Test("Push")
     func push() {
-        let cache = LRUCache<Int, String>(countLimit: 4)
+        let cache = Cache<Int, String>(countLimit: 4)
 
         cache[0] = "0"
         #expect(cache.count == 1)
@@ -61,10 +61,10 @@ extension LRUCacheTests {
 }
 
 //
-extension LRUCacheTests {
+extension CacheTests {
     @Test("Contains")
     func contains() {
-        let cache = LRUCache<Int, String>(countLimit: 4)
+        let cache = Cache<Int, String>(countLimit: 4)
         cache[0] = "0"
         cache[1] = "1"
         cache[2] = "2"
@@ -87,10 +87,10 @@ extension LRUCacheTests {
     }
 }
 
-extension LRUCacheTests {
+extension CacheTests {
     @Test("Remove")
     func remove() {
-        let cache = LRUCache<Int, String>(countLimit: 4)
+        let cache = Cache<Int, String>(countLimit: 4)
 
         cache[0] = "0"
         cache[1] = "1"
@@ -128,10 +128,10 @@ extension LRUCacheTests {
     }
 }
 
-extension LRUCacheTests {
+extension CacheTests {
     @Test("Remove All")
     func removeAll() {
-        let cache = LRUCache<Int, String>(countLimit: 4)
+        let cache = Cache<Int, String>(countLimit: 4)
 
         cache[0] = "0"
         cache[1] = "1"
@@ -155,10 +155,10 @@ extension LRUCacheTests {
     }
 }
 
-extension LRUCacheTests {
+extension CacheTests {
     @Test("Change countLimit")
     func countLimit() {
-        let cache = LRUCache<Int, String>(countLimit: 4)
+        let cache = Cache<Int, String>(countLimit: 4)
 
         #expect(cache.countLimit == 4)
 
@@ -244,10 +244,10 @@ extension LRUCacheTests {
     }
 }
 
-extension LRUCacheTests {
+extension CacheTests {
     @Test("Change totalCostLimit")
     func totalCostLimit() {
-        let cache = LRUCache<Int, String>(totalCostLimit: 100)
+        let cache = Cache<Int, String>(totalCostLimit: 100)
 
         #expect(cache.totalCostLimit == 100)
 
@@ -304,10 +304,10 @@ extension LRUCacheTests {
     }
 }
 
-extension LRUCacheTests {
+extension CacheTests {
     @Test("DropLast")
     func dropLast() {
-        let cache = LRUCache<Int, String>(countLimit: 4)
+        let cache = Cache<Int, String>(countLimit: 4)
 
         cache[0] = "0"
         cache[1] = "1"
