@@ -96,6 +96,19 @@ public extension LRUCache {
 }
 
 public extension LRUCache {
+    /// Remove the oldest value from the cache
+    @discardableResult
+    func dropLast() -> T? {
+        if let node = storage.dropLast() {
+            map[node.value.key] = nil
+            return node.value.value
+        } else {
+            return nil
+        }
+    }
+}
+
+public extension LRUCache {
     /// Empties the cache.
     func removeAll() {
         storage.removeAll()

@@ -224,3 +224,54 @@ extension LRUCacheTests {
         #expect(cache[6] == "6")
     }
 }
+
+extension LRUCacheTests {
+    @Test("DropLast")
+    func dropLast() {
+        let cache = LRUCache<Int, String>(countLimit: 4)
+
+        cache[0] = "0"
+        cache[1] = "1"
+        cache[2] = "2"
+        cache[3] = "3"
+
+        #expect(cache.count == 4)
+        #expect(cache[0] == "0")
+        #expect(cache[1] == "1")
+        #expect(cache[2] == "2")
+        #expect(cache[3] == "3")
+
+        #expect(cache.dropLast() == "0")
+
+        #expect(cache.count == 3)
+        #expect(cache.contains(0) == false)
+        #expect(cache.contains(1))
+        #expect(cache.contains(2))
+        #expect(cache.contains(3))
+
+        #expect(cache[1] == "1")
+        #expect(cache.dropLast() == "2")
+
+        #expect(cache.count == 2)
+        #expect(cache.contains(0) == false)
+        #expect(cache.contains(1))
+        #expect(cache.contains(2) == false)
+        #expect(cache.contains(3))
+
+        #expect(cache.dropLast() == "3")
+
+        #expect(cache.count == 1)
+        #expect(cache.contains(0) == false)
+        #expect(cache.contains(1))
+        #expect(cache.contains(2) == false)
+        #expect(cache.contains(3) == false)
+
+        #expect(cache.dropLast() == "1")
+
+        #expect(cache.count == 0)
+        #expect(cache.contains(0) == false)
+        #expect(cache.contains(1) == false)
+        #expect(cache.contains(2) == false)
+        #expect(cache.contains(3) == false)
+    }
+}
