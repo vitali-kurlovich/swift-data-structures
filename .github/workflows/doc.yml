@@ -35,17 +35,21 @@ jobs:
       - name: Latest Swift
         uses: SwiftyLab/setup-swift@latest
 
-
-      
-      - name: Generate DocC 
-        run: swift package --allow-writing-to-directory ./.docs generate-documentation  --target Lists --target Caches  --output-path ./.docs --disable-indexing --transform-for-static-hosting
-
       - name: Make dir for static content
-        run: mkdir pages && mkdir ./pages/caches && mkdir ./pages/lists 
+        run: mkdir pages && mkdir ./pages/lists && mkdir ./pages/caches
+      
+      - name: Generate DocC Lists
+        run: swift package --allow-writing-to-directory ./.docs generate-documentation --target Lists --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures/lists
 
       - name: Copy generated content into pages dir
-        run: cp -r ./.docs/Caches.doccarchive/* ./pages/caches && cp -r ./.docs/Lists.doccarchive/* ./pages/lists
-      
+        run: cp -r ./.docs/* ./pages/lists 
+
+      - name: Generate DocC Caches
+        run: swift package --allow-writing-to-directory ./.docs generate-documentation --target Caches --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures/caches
+
+      - name: Copy generated content into pages dir
+        run: cp -r ./.docs/* ./pages/caches 
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
