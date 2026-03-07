@@ -12,32 +12,10 @@ struct BenchmarkCLI: ParsableCommand {
 
     mutating func run() throws {
         if #available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *) {
-            runBenchmark()
+            // runLinkedListBenchmark()
+            runCacheBenchmark()
         } else {
             print("Cannot be run on this os version.")
         }
-    }
-}
-
-extension BenchmarkCLI {
-    @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
-    func runBenchmark() {
-        let benchmark = BenchmarkExecuter(repeatCount: self.repeat, warmingDuration: .zero)
-
-        let count = 1_000_000
-
-        let linkedList = LinkedListAppendBenchmark(count: count)
-
-        benchmark(name: linkedList.name) {
-            linkedList.run()
-        }
-
-        let array = ArrayAppendBenchmark(count: count)
-
-        benchmark(name: array.name) {
-            array.run()
-        }
-
-        benchmark.start()
     }
 }
