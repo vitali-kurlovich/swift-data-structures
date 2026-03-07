@@ -14,18 +14,31 @@ public final class LRUCache<Key: Hashable, T> {
     /// The maximum number of objects the cache should hold.
     public var countLimit: Int {
         didSet {
-            assert(countLimit > 0)
+            assert(countLimit >= 0)
             removeRedundant()
         }
     }
 
-    let storage = LinkedList<KeyValue>()
-    var map: [Key: MapValue]
+    /// The maximum total cost that the cache can hold before it starts evicting objects.
+    public var totalCostLimit: Int {
+        didSet {
+            assert(totalCostLimit >= 0)
+            removeRedundant()
+        }
+    }
 
-    public init(name: String = "", countLimit: Int) {
-        assert(countLimit > 0)
+    private(set) var totalCost: Int = 0
+
+    let storage = LinkedList<KeyValue>()
+    private(set) var map: [Key: MapValue]
+
+    public init(name: String = "", countLimit: Int = 0, totalCostLimit: Int = 0) {
+        assert(countLimit >= 0)
+        assert(totalCostLimit >= 0)
+
         self.name = name
         self.countLimit = countLimit
+        self.totalCostLimit = totalCostLimit
         map = .init()
     }
 }
@@ -34,6 +47,7 @@ extension LRUCache {
     typealias MapValue = ListNode<KeyValue>
 
     struct KeyValue {
+        let cost: Int
         let key: Key
         let value: T
     }
@@ -79,18 +93,32 @@ public extension LRUCache {
         return node.value.value
     }
 
-    func push(key: Key, value: T) {
-        let stored = KeyValue(key: key, value: value)
+    func push(key: Key, value: T, cost: Int = 0) {
+        assert(cost >= 0)
 
-        if count < countLimit {
+        let stored = KeyValue(cost: cost, key: key, value: value)
+
+        let reachedCostLimit = totalCostLimit > 0 && (totalCost + cost > totalCostLimit)
+        let reachedCountLimit = countLimit > 0 && count >= countLimit
+
+        if storage.isEmpty || !(reachedCostLimit || reachedCountLimit) {
             let node = storage.prepend(stored)
             map[key] = node
+            totalCost += cost
         } else {
             let node = storage.dropLast()!
+
+            totalCost -= node.value.cost
+            totalCost += cost
+
             map[node.value.key] = nil
+
             node.value = stored
             map[key] = node
+
             storage.prepend(node: node)
+
+            removeRedundant()
         }
     }
 }
@@ -101,6 +129,7 @@ public extension LRUCache {
     func dropLast() -> T? {
         if let node = storage.dropLast() {
             map[node.value.key] = nil
+            totalCost -= node.value.cost
             return node.value.value
         } else {
             return nil
@@ -113,6 +142,7 @@ public extension LRUCache {
     func removeAll() {
         storage.removeAll()
         map.removeAll()
+        totalCost = 0
     }
 
     /// Removes the value of the specified key in the cache.
@@ -123,18 +153,33 @@ public extension LRUCache {
 
         storage.remove(node)
         map[key] = nil
+        totalCost -= node.value.cost
     }
 }
 
 private extension LRUCache {
     func removeRedundant() {
-        let redundantCount = count - countLimit
+        removeRedundantByCount()
+        removeRedundantByCost()
+    }
 
-        guard redundantCount > 0 else { return }
+    func removeRedundantByCount() {
+        guard countLimit > 0 else { return }
 
-        for _ in 0 ..< redundantCount {
+        while !storage.isEmpty, countLimit < count {
             let node = storage.dropLast()!
             map[node.value.key] = nil
+            totalCost -= node.value.cost
+        }
+    }
+
+    func removeRedundantByCost() {
+        guard totalCostLimit > 0 else { return }
+
+        while !storage.isEmpty, totalCostLimit < totalCost {
+            let node = storage.dropLast()!
+            map[node.value.key] = nil
+            totalCost -= node.value.cost
         }
     }
 }
