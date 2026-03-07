@@ -34,9 +34,21 @@ jobs:
       
       - name: Latest Swift
         uses: SwiftyLab/setup-swift@latest
+
+      - name: Make dir for static content
+        run: mkdir pages
       
-      - name: DocC
-        run: swift package --allow-writing-to-directory ./.docs generate-documentation --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures 
+      - name: DocC for Caches
+        run: swift package --allow-writing-to-directory ./.docs generate-documentation --target Caches  --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures 
+
+      - name: Copy generated content into pages dir
+        run: cp -r ./.docs/* ./pages
+
+      - name: DocC for Lists
+        run: swift package --allow-writing-to-directory ./.docs generate-documentation --target Lists  --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures 
+
+      - name: Copy generated content into pages dir
+        run: cp -r ./.docs/* ./pages
       
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -44,7 +56,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: './.docs'
+          path: 'pages'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
