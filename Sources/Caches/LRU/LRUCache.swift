@@ -7,15 +7,15 @@ import Lists
 /**
  An LRU (Least Recently Used) Cache is a data structure that stores a limited number of items, automatically evicting the oldest, least recently accessed data when capacity is reached.
  */
-
 public final class LRUCache<Key: Hashable, T> {
     /// The name of the cache.
-    var name: String
+    public var name: String
 
     /// The maximum number of objects the cache should hold.
     public var countLimit: Int {
         didSet {
             assert(countLimit > 0)
+            removeRedundant()
         }
     }
 
@@ -40,11 +40,12 @@ extension LRUCache {
 }
 
 public extension LRUCache {
-    /// The maximum number of objects the cache should hold.
+    /// The number of objects the cache held
     var count: Int {
         map.count
     }
 
+    /// Returns a Boolean value indicating whether the cache contains the object associated with a given key.
     func contains(_ key: Key) -> Bool {
         map[key] != nil
     }
@@ -109,5 +110,18 @@ public extension LRUCache {
 
         storage.remove(node)
         map[key] = nil
+    }
+}
+
+private extension LRUCache {
+    func removeRedundant() {
+        let redundantCount = count - countLimit
+
+        guard redundantCount > 0 else { return }
+
+        for _ in 0 ..< redundantCount {
+            let node = storage.dropLast()!
+            map[node.value.key] = nil
+        }
     }
 }
