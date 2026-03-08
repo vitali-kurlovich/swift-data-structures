@@ -15,32 +15,32 @@ extension CacheTests {
         let cache = Cache<Int, String>(countLimit: 4)
 
         cache[0] = "0"
-        #expect(cache.count == 1)
+        #expect(cache.totalCount == 1)
         #expect(cache[0] == "0")
         #expect(cache[1] == nil)
 
         cache[1] = "1"
-        #expect(cache.count == 2)
+        #expect(cache.totalCount == 2)
         #expect(cache[0] == "0")
         #expect(cache[1] == "1")
         #expect(cache[2] == nil)
 
         cache[2] = "2"
-        #expect(cache.count == 3)
+        #expect(cache.totalCount == 3)
         #expect(cache[0] == "0")
         #expect(cache[1] == "1")
         #expect(cache[2] == "2")
         #expect(cache[3] == nil)
 
         cache[3] = "3"
-        #expect(cache.count == 4)
+        #expect(cache.totalCount == 4)
         #expect(cache[0] == "0")
         #expect(cache[1] == "1")
         #expect(cache[2] == "2")
         #expect(cache[3] == "3")
 
         cache[4] = "4"
-        #expect(cache.count == 4)
+        #expect(cache.totalCount == 4)
         #expect(cache[0] == nil)
         #expect(cache[1] == "1")
         #expect(cache[2] == "2")
@@ -50,7 +50,7 @@ extension CacheTests {
         #expect(cache[1] == "1")
         cache[5] = "5"
 
-        #expect(cache.count == 4)
+        #expect(cache.totalCount == 4)
         #expect(cache[0] == nil)
         #expect(cache[1] == "1")
         #expect(cache[2] == nil)
@@ -97,7 +97,7 @@ extension CacheTests {
         cache[2] = "2"
         cache[3] = "3"
 
-        #expect(cache.count == 4)
+        #expect(cache.totalCount == 4)
         #expect(cache[0] == "0")
         #expect(cache[1] == "1")
         #expect(cache[2] == "2")
@@ -105,21 +105,21 @@ extension CacheTests {
 
         cache.remove(for: 1)
 
-        #expect(cache.count == 3)
+        #expect(cache.totalCount == 3)
         #expect(cache[0] == "0")
         #expect(cache[1] == nil)
         #expect(cache[2] == "2")
         #expect(cache[3] == "3")
 
         cache.remove(for: 1)
-        #expect(cache.count == 3)
+        #expect(cache.totalCount == 3)
         #expect(cache[0] == "0")
         #expect(cache[1] == nil)
         #expect(cache[2] == "2")
         #expect(cache[3] == "3")
 
         cache[3] = nil
-        #expect(cache.count == 2)
+        #expect(cache.totalCount == 2)
 
         #expect(cache[0] == "0")
         #expect(cache[1] == nil)
@@ -138,7 +138,7 @@ extension CacheTests {
         cache[2] = "2"
         cache[3] = "3"
 
-        #expect(cache.count == 4)
+        #expect(cache.totalCount == 4)
         #expect(cache[0] == "0")
         #expect(cache[1] == "1")
         #expect(cache[2] == "2")
@@ -146,7 +146,7 @@ extension CacheTests {
 
         cache.removeAll()
 
-        #expect(cache.count == 0)
+        #expect(cache.totalCount == 0)
 
         #expect(cache[0] == nil)
         #expect(cache[1] == nil)
@@ -167,14 +167,14 @@ extension CacheTests {
         cache[2] = "2"
         cache[3] = "3"
 
-        #expect(cache.count == 4)
+        #expect(cache.totalCount == 4)
         #expect(cache[0] == "0")
         #expect(cache[1] == "1")
         #expect(cache[2] == "2")
         #expect(cache[3] == "3")
 
         cache.countLimit = 2
-        #expect(cache.count == 2)
+        #expect(cache.totalCount == 2)
 
         #expect(cache[0] == nil)
         #expect(cache[1] == nil)
@@ -182,7 +182,7 @@ extension CacheTests {
         #expect(cache[3] == "3")
 
         cache[4] = "4"
-        #expect(cache.count == 2)
+        #expect(cache.totalCount == 2)
 
         #expect(cache[0] == nil)
         #expect(cache[1] == nil)
@@ -191,7 +191,7 @@ extension CacheTests {
         #expect(cache[4] == "4")
 
         cache.countLimit = 2
-        #expect(cache.count == 2)
+        #expect(cache.totalCount == 2)
 
         #expect(cache[0] == nil)
         #expect(cache[1] == nil)
@@ -200,10 +200,10 @@ extension CacheTests {
         #expect(cache[4] == "4")
 
         cache.countLimit = 3
-        #expect(cache.count == 2)
+        #expect(cache.totalCount == 2)
 
         cache[5] = "5"
-        #expect(cache.count == 3)
+        #expect(cache.totalCount == 3)
 
         #expect(cache[0] == nil)
         #expect(cache[1] == nil)
@@ -213,7 +213,7 @@ extension CacheTests {
         #expect(cache[5] == "5")
 
         cache[6] = "6"
-        #expect(cache.count == 3)
+        #expect(cache.totalCount == 3)
 
         #expect(cache[0] == nil)
         #expect(cache[1] == nil)
@@ -229,7 +229,7 @@ extension CacheTests {
         cache[8] = "8"
         cache[9] = "9"
 
-        #expect(cache.count == 6)
+        #expect(cache.totalCount == 6)
 
         #expect(cache[0] == nil)
         #expect(cache[1] == nil)
@@ -253,54 +253,54 @@ extension CacheTests {
 
         cache.push(key: 0, value: "0", cost: 20)
         #expect(cache.totalCost == 20)
-        #expect(cache.count == 1)
+        #expect(cache.totalCount == 1)
 
         cache.push(key: 1, value: "1", cost: 30)
         #expect(cache.totalCost == 50)
-        #expect(cache.count == 2)
+        #expect(cache.totalCount == 2)
 
         cache.push(key: 2, value: "2", cost: 50)
         #expect(cache.totalCost == 100)
-        #expect(cache.count == 3)
+        #expect(cache.totalCount == 3)
 
         cache.push(key: 3, value: "3", cost: 25)
         #expect(cache.totalCost == 75)
-        #expect(cache.count == 2)
+        #expect(cache.totalCount == 2)
 
         cache[2] = nil
         #expect(cache.totalCost == 25)
-        #expect(cache.count == 1)
+        #expect(cache.totalCount == 1)
 
         cache.push(key: 4, value: "4", cost: 25)
         #expect(cache.totalCost == 50)
-        #expect(cache.count == 2)
+        #expect(cache.totalCount == 2)
 
         cache.push(key: 5, value: "5", cost: 10)
         #expect(cache.totalCost == 60)
-        #expect(cache.count == 3)
+        #expect(cache.totalCount == 3)
 
         cache.push(key: 6, value: "6", cost: 10)
         #expect(cache.totalCost == 70)
-        #expect(cache.count == 4)
+        #expect(cache.totalCount == 4)
 
         cache.push(key: 7, value: "7", cost: 10)
         #expect(cache.totalCost == 80)
-        #expect(cache.count == 5)
+        #expect(cache.totalCount == 5)
 
         cache.push(key: 8, value: "8", cost: 10)
         #expect(cache.totalCost == 90)
-        #expect(cache.count == 6)
+        #expect(cache.totalCount == 6)
 
         cache.push(key: 9, value: "9", cost: 10)
         #expect(cache.totalCost == 100)
-        #expect(cache.count == 7)
+        #expect(cache.totalCount == 7)
 
         #expect(cache[3] == "3")
 
         cache.totalCostLimit = 50
 
         #expect(cache.totalCost == 45)
-        #expect(cache.count == 3)
+        #expect(cache.totalCount == 3)
     }
 }
 
@@ -314,7 +314,7 @@ extension CacheTests {
         cache[2] = "2"
         cache[3] = "3"
 
-        #expect(cache.count == 4)
+        #expect(cache.totalCount == 4)
         #expect(cache[0] == "0")
         #expect(cache[1] == "1")
         #expect(cache[2] == "2")
@@ -322,7 +322,7 @@ extension CacheTests {
 
         #expect(cache.dropLast() == "0")
 
-        #expect(cache.count == 3)
+        #expect(cache.totalCount == 3)
         #expect(cache.contains(0) == false)
         #expect(cache.contains(1))
         #expect(cache.contains(2))
@@ -331,7 +331,7 @@ extension CacheTests {
         #expect(cache[1] == "1")
         #expect(cache.dropLast() == "2")
 
-        #expect(cache.count == 2)
+        #expect(cache.totalCount == 2)
         #expect(cache.contains(0) == false)
         #expect(cache.contains(1))
         #expect(cache.contains(2) == false)
@@ -339,7 +339,7 @@ extension CacheTests {
 
         #expect(cache.dropLast() == "3")
 
-        #expect(cache.count == 1)
+        #expect(cache.totalCount == 1)
         #expect(cache.contains(0) == false)
         #expect(cache.contains(1))
         #expect(cache.contains(2) == false)
@@ -347,13 +347,13 @@ extension CacheTests {
 
         #expect(cache.dropLast() == "1")
 
-        #expect(cache.count == 0)
+        #expect(cache.totalCount == 0)
         #expect(cache.contains(0) == false)
         #expect(cache.contains(1) == false)
         #expect(cache.contains(2) == false)
         #expect(cache.contains(3) == false)
 
         #expect(cache.dropLast() == nil)
-        #expect(cache.count == 0)
+        #expect(cache.totalCount == 0)
     }
 }

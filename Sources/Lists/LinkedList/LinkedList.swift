@@ -3,14 +3,13 @@
 //
 
 public final class LinkedList<T> {
+    @usableFromInline
     var _first: ListNode<T>?
+
+    @usableFromInline
     var _last: ListNode<T>?
 
-    deinit {
-        removeAll()
-    }
-
-    init(first: ListNode<T>? = nil, last: ListNode<T>? = nil) {
+    @inlinable init(first: ListNode<T>? = nil, last: ListNode<T>? = nil) {
         _first = first
         _last = last
     }
@@ -28,30 +27,30 @@ public extension LinkedList {
 }
 
 public extension LinkedList {
-    var first: ListNode<T>? {
+    @inlinable var first: ListNode<T>? {
         _first
     }
 
-    var last: ListNode<T>? {
+    @inlinable var last: ListNode<T>? {
         _last
     }
 }
 
 public extension LinkedList {
-    var isEmpty: Bool {
+    @inlinable var isEmpty: Bool {
         assert((first == nil && last == nil) || (first != nil && last != nil))
         return first == nil
     }
 }
 
 public extension LinkedList {
-    var count: Int {
+    @inlinable var count: Int {
         first?.count ?? 0
     }
 }
 
 public extension LinkedList {
-    func contains(_ node: ListNode<T>) -> Bool {
+    @inlinable func contains(_ node: ListNode<T>) -> Bool {
         first?.contains(node) ?? false
     }
 }

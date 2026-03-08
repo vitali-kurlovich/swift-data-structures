@@ -4,26 +4,34 @@
 
 public final class ListNode<T> {
     public var value: T
-    var _prev: ListNode<T>?
-    var _next: ListNode<T>?
 
-    public init(_ value: T) {
+    @usableFromInline
+    var _next: ListNode<T>? = nil
+
+    @usableFromInline
+    unowned var _prev: ListNode<T>? = nil
+
+    deinit {
+        _next?._prev = nil
+    }
+
+    @inlinable init(_ value: T) {
         self.value = value
     }
 }
 
 public extension ListNode {
-    var next: ListNode<T>? {
+    @inlinable var next: ListNode<T>? {
         _next
     }
 
-    var prev: ListNode<T>? {
+    @inlinable var prev: ListNode<T>? {
         _prev
     }
 }
 
 public extension ListNode {
-    var count: Int {
+    @inlinable var count: Int {
         var count = 1
 
         var current = self
@@ -45,7 +53,7 @@ public extension ListNode {
 }
 
 public extension ListNode {
-    var first: ListNode<T> {
+    @inlinable var first: ListNode<T> {
         var current = self
 
         while let prev = current.prev {
@@ -55,13 +63,13 @@ public extension ListNode {
         return current
     }
 
-    var isFirst: Bool {
+    @inlinable var isFirst: Bool {
         prev == nil
     }
 }
 
 public extension ListNode {
-    var last: ListNode<T> {
+    @inlinable var last: ListNode<T> {
         var current = self
 
         while let next = current.next {
@@ -71,13 +79,13 @@ public extension ListNode {
         return current
     }
 
-    var isLast: Bool {
+    @inlinable var isLast: Bool {
         next == nil
     }
 }
 
 public extension ListNode {
-    func contains(_ node: ListNode<T>) -> Bool {
+    @inlinable func contains(_ node: ListNode<T>) -> Bool {
         var current = self
 
         if current === node {

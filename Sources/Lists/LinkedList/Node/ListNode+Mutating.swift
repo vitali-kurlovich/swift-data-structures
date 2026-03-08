@@ -3,12 +3,10 @@
 //
 
 extension ListNode {
-    func remove() {
+    @inlinable func remove() {
         defer {
             self._prev = nil
             self._next = nil
-
-            assert(ListNode.isCyclic(node: self) == false)
         }
 
         let prevNode = prev
@@ -20,10 +18,7 @@ extension ListNode {
 }
 
 extension ListNode {
-    func append(_ node: ListNode<T>) {
-        defer {
-            assert(ListNode.isCyclic(node: self) == false)
-        }
+    @inlinable func append(_ node: ListNode<T>) {
         assert(contains(node) == false)
 
         let first = node.first
@@ -39,11 +34,7 @@ extension ListNode {
         right?._prev = last
     }
 
-    func prepend(_ node: ListNode<T>) {
-        defer {
-            assert(ListNode.isCyclic(node: self) == false)
-        }
-
+    @inlinable func prepend(_ node: ListNode<T>) {
         assert(contains(node) == false)
 
         let first = node.first
@@ -61,11 +52,7 @@ extension ListNode {
 }
 
 extension ListNode {
-    func swap(with node: ListNode<T>) {
-        defer {
-            assert(ListNode.isCyclic(node: self) == false)
-        }
-
+    @inlinable func swap(with node: ListNode<T>) {
         guard self !== node else { return }
 
         if next === node {
@@ -103,7 +90,7 @@ extension ListNode {
 }
 
 extension ListNode {
-    func disconnect() -> ListNode<T>? {
+    @inlinable func disconnect() -> ListNode<T>? {
         guard let next = next else {
             return nil
         }

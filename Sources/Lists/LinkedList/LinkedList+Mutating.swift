@@ -4,7 +4,7 @@
 
 public extension LinkedList {
     @discardableResult
-    func remove(_ node: ListNode<T>) -> ListNode<T> {
+    @inlinable func remove(_ node: ListNode<T>) -> ListNode<T> {
         assert(contains(node))
 
         if node === _first {
@@ -37,7 +37,7 @@ public extension LinkedList {
 
 public extension LinkedList {
     @discardableResult
-    func dropFirst() -> ListNode<T>? {
+    @inlinable func dropFirst() -> ListNode<T>? {
         guard let first else {
             return nil
         }
@@ -46,7 +46,7 @@ public extension LinkedList {
     }
 
     @discardableResult
-    func dropLast() -> ListNode<T>? {
+    @inlinable func dropLast() -> ListNode<T>? {
         guard let last else {
             return nil
         }
@@ -56,7 +56,7 @@ public extension LinkedList {
 }
 
 public extension LinkedList {
-    func append(node: ListNode<T>) {
+    @inlinable func append(node: ListNode<T>) {
         if isEmpty {
             _first = node.first
             _last = node.last
@@ -73,7 +73,7 @@ public extension LinkedList {
     }
 
     @discardableResult
-    func append(_ value: T) -> ListNode<T> {
+    @inlinable func append(_ value: T) -> ListNode<T> {
         let node = ListNode(value)
         append(node: node)
         return node
@@ -81,7 +81,7 @@ public extension LinkedList {
 }
 
 public extension LinkedList {
-    func prepend(node: ListNode<T>) {
+    @inlinable func prepend(node: ListNode<T>) {
         if isEmpty {
             _first = node.first
             _last = node.last
@@ -96,7 +96,7 @@ public extension LinkedList {
     }
 
     @discardableResult
-    func prepend(_ value: T) -> ListNode<T> {
+    @inlinable func prepend(_ value: T) -> ListNode<T> {
         let node = ListNode(value)
         prepend(node: node)
         return node
@@ -104,7 +104,7 @@ public extension LinkedList {
 }
 
 public extension LinkedList {
-    func insert(node: ListNode<T>, after other: ListNode<T>) {
+    @inlinable func insert(node: ListNode<T>, after other: ListNode<T>) {
         assert(contains(other))
 
         if other === _last {
@@ -116,7 +116,7 @@ public extension LinkedList {
     }
 
     @discardableResult
-    func insert(_ value: T, after other: ListNode<T>) -> ListNode<T> {
+    @inlinable func insert(_ value: T, after other: ListNode<T>) -> ListNode<T> {
         let node = ListNode<T>(value)
         insert(node: node, after: other)
         return node
@@ -124,7 +124,7 @@ public extension LinkedList {
 }
 
 public extension LinkedList {
-    func insert(node: ListNode<T>, before other: ListNode<T>) {
+    @inlinable func insert(node: ListNode<T>, before other: ListNode<T>) {
         assert(contains(other))
 
         if other === _first {
@@ -136,7 +136,7 @@ public extension LinkedList {
     }
 
     @discardableResult
-    func insert(_ value: T, before other: ListNode<T>) -> ListNode<T> {
+    @inlinable func insert(_ value: T, before other: ListNode<T>) -> ListNode<T> {
         let node = ListNode<T>(value)
         insert(node: node, before: other)
         return node
@@ -144,7 +144,7 @@ public extension LinkedList {
 }
 
 public extension LinkedList {
-    func swap(_ node: ListNode<T>, with other: ListNode<T>) {
+    @inlinable func swap(_ node: ListNode<T>, with other: ListNode<T>) {
         guard node !== other else { return }
 
         assert(contains(node))
@@ -171,7 +171,7 @@ public extension LinkedList {
 }
 
 public extension LinkedList {
-    func disconnect(by node: ListNode<T>) -> LinkedList<T> {
+    @inlinable func disconnect(by node: ListNode<T>) -> LinkedList<T> {
         assert(contains(node))
 
         let second = node.disconnect()

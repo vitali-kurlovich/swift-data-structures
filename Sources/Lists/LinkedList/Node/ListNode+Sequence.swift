@@ -13,13 +13,14 @@ extension ListNode: Sequence {
 public struct ListNodeIterator<T>: IteratorProtocol {
     public typealias Element = T
 
+    @usableFromInline
     var node: ListNode<T>?
 
-    public init(_ node: ListNode<T>?) {
+    @inlinable public init(_ node: ListNode<T>?) {
         self.node = node
     }
 
-    public mutating func next() -> T? {
+    @inlinable public mutating func next() -> T? {
         defer {
             node = node?.next
         }

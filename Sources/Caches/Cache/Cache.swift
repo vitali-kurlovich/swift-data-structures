@@ -28,9 +28,10 @@ public final class Cache<Key: Hashable, T> {
     }
 
     private(set) var totalCost: Int = 0
+    private(set) var totalCount: Int = 0
 
-    let storage = LinkedList<KeyValue>()
-    private(set) var map: [Key: MapValue]
+    private let storage = LinkedList<KeyValue>()
+    private var map: [Key: MapValue]
 
     public init(name: String = "", countLimit: Int = 0, totalCostLimit: Int = 0) {
         assert(countLimit >= 0)
@@ -39,7 +40,7 @@ public final class Cache<Key: Hashable, T> {
         self.name = name
         self.countLimit = countLimit
         self.totalCostLimit = totalCostLimit
-        map = .init()
+        map = .init(minimumCapacity: countLimit)
     }
 }
 
@@ -54,11 +55,6 @@ extension Cache {
 }
 
 public extension Cache {
-    /// The number of objects the cache held
-    var count: Int {
-        map.count
-    }
-
     /// Returns a Boolean value indicating whether the cache contains the object associated with a given key.
     func contains(_ key: Key) -> Bool {
         map[key] != nil
@@ -99,20 +95,20 @@ public extension Cache {
         let stored = KeyValue(cost: cost, key: key, value: value)
 
         let reachedCostLimit = totalCostLimit > 0 && (totalCost + cost > totalCostLimit)
-        let reachedCountLimit = countLimit > 0 && count >= countLimit
+        let reachedCountLimit = countLimit > 0 && totalCount >= countLimit
 
         if storage.isEmpty || !(reachedCostLimit || reachedCountLimit) {
             let node = storage.prepend(stored)
             map[key] = node
             totalCost += cost
+            totalCount += 1
         } else {
             let node = storage.dropLast()!
 
             totalCost -= node.value.cost
             totalCost += cost
 
-            map[node.value.key] = nil
-
+            map.removeValue(forKey: node.value.key)
             node.value = stored
             map[key] = node
 
@@ -128,8 +124,9 @@ public extension Cache {
     @discardableResult
     func dropLast() -> T? {
         if let node = storage.dropLast() {
-            map[node.value.key] = nil
+            map.removeValue(forKey: node.value.key)
             totalCost -= node.value.cost
+            totalCount -= 1
             return node.value.value
         } else {
             return nil
@@ -143,17 +140,19 @@ public extension Cache {
         storage.removeAll()
         map.removeAll()
         totalCost = 0
+        totalCount = 0
     }
 
     /// Removes the value of the specified key in the cache.
     func remove(for key: Key) {
-        guard let node = map[key] else {
+        guard let node = map.removeValue(forKey: key) else {
             return
         }
 
         storage.remove(node)
-        map[key] = nil
+
         totalCost -= node.value.cost
+        totalCount -= 1
     }
 }
 
@@ -166,10 +165,11 @@ private extension Cache {
     func removeRedundantByCount() {
         guard countLimit > 0 else { return }
 
-        while !storage.isEmpty, countLimit < count {
+        while !storage.isEmpty, countLimit < totalCount {
             let node = storage.dropLast()!
-            map[node.value.key] = nil
+            map.removeValue(forKey: node.value.key)
             totalCost -= node.value.cost
+            totalCount -= 1
         }
     }
 
@@ -178,8 +178,9 @@ private extension Cache {
 
         while !storage.isEmpty, totalCostLimit < totalCost {
             let node = storage.dropLast()!
-            map[node.value.key] = nil
+            map.removeValue(forKey: node.value.key)
             totalCost -= node.value.cost
+            totalCount -= 1
         }
     }
 }

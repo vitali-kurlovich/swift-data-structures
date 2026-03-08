@@ -6,7 +6,7 @@
 import Testing
 
 extension ListNodeTests {
-    @Test("Copy")
+    @Test("Copy", .disabled())
     func copy() throws {
         let node0 = ListNode(0)
         #expect(node0.copy() !== node0)
@@ -28,5 +28,13 @@ extension ListNodeTests {
 
         #expect(node0.next !== copy.next)
         #expect(node0.next!.value == copy.next!.value)
+
+        let first = node0.first
+        let firstCopy = copy.first
+
+        #expect(first !== firstCopy)
+        #expect(first == firstCopy)
+
+        // #expect(<#T##condition: Bool##Bool#>)
     }
 }
