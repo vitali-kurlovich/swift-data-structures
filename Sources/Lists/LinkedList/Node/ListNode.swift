@@ -61,31 +61,3 @@ public extension ListNode {
         next == nil
     }
 }
-
-public extension ListNode {
-    @inlinable func contains(_ node: ListNode<T>) -> Bool {
-        var current = self
-
-        if current === node {
-            return true
-        }
-
-        while let next = current.next {
-            current = next
-            if current === node {
-                return true
-            }
-        }
-
-        current = self
-
-        while let prev = current.prev {
-            current = prev
-            if current === node {
-                return true
-            }
-        }
-
-        return false
-    }
-}

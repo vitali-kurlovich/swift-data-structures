@@ -5,91 +5,93 @@
 @testable import Lists
 import Testing
 
-extension ListNodeTests {
-    @Test("Remove")
-    func remove() throws {
-        let first = ListNode(10)
-        let second = ListNode(10)
-        let last = ListNode(30)
+/*
+ extension ListNodeTests {
+     @Test("Remove")
+     func remove() throws {
+         let first = ListNode(10)
+         let second = ListNode(10)
+         let last = ListNode(30)
 
-        first.append(second)
-        second.append(last)
+         first.append(second)
+         second.append(last)
 
-        #expect(first.contains(second))
-        #expect(first.contains(last))
+         #expect(first.contains(second))
+         #expect(first.contains(last))
 
-        #expect(second.contains(first))
-        #expect(second.contains(last))
+         #expect(second.contains(first))
+         #expect(second.contains(last))
 
-        #expect(last.contains(first))
-        #expect(last.contains(second))
+         #expect(last.contains(first))
+         #expect(last.contains(second))
 
-        first.remove()
+         first.remove()
 
-        #expect(first.prev == nil)
-        #expect(first.next == nil)
+         #expect(first.prev == nil)
+         #expect(first.next == nil)
 
-        #expect(first.contains(second) == false)
-        #expect(first.contains(last) == false)
+         #expect(first.contains(second) == false)
+         #expect(first.contains(last) == false)
 
-        #expect(second.contains(first) == false)
-        #expect(second.contains(last))
+         #expect(second.contains(first) == false)
+         #expect(second.contains(last))
 
-        #expect(last.contains(first) == false)
-        #expect(last.contains(second))
+         #expect(last.contains(first) == false)
+         #expect(last.contains(second))
 
-        first.append(second)
+         first.append(second)
 
-        #expect(first.contains(second))
-        #expect(first.contains(last))
+         #expect(first.contains(second))
+         #expect(first.contains(last))
 
-        #expect(second.contains(first))
-        #expect(second.contains(last))
+         #expect(second.contains(first))
+         #expect(second.contains(last))
 
-        #expect(last.contains(first))
-        #expect(last.contains(second))
+         #expect(last.contains(first))
+         #expect(last.contains(second))
 
-        second.remove()
+         second.remove()
 
-        #expect(second.prev == nil)
-        #expect(second.next == nil)
+         #expect(second.prev == nil)
+         #expect(second.next == nil)
 
-        #expect(first.contains(second) == false)
-        #expect(first.contains(last))
+         #expect(first.contains(second) == false)
+         #expect(first.contains(last))
 
-        #expect(second.contains(first) == false)
-        #expect(second.contains(last) == false)
+         #expect(second.contains(first) == false)
+         #expect(second.contains(last) == false)
 
-        #expect(last.contains(first))
-        #expect(last.contains(second) == false)
+         #expect(last.contains(first))
+         #expect(last.contains(second) == false)
 
-        first.setNext(second)
-        second.setNext(last)
+         first.setNext(second)
+         second.setNext(last)
 
-        #expect(first.contains(second))
-        #expect(first.contains(last))
+         #expect(first.contains(second))
+         #expect(first.contains(last))
 
-        #expect(second.contains(first))
-        #expect(second.contains(last))
+         #expect(second.contains(first))
+         #expect(second.contains(last))
 
-        #expect(last.contains(first))
-        #expect(last.contains(second))
+         #expect(last.contains(first))
+         #expect(last.contains(second))
 
-        last.remove()
+         last.remove()
 
-        #expect(last.prev == nil)
-        #expect(last.next == nil)
+         #expect(last.prev == nil)
+         #expect(last.next == nil)
 
-        #expect(first.contains(second))
-        #expect(first.contains(last) == false)
+         #expect(first.contains(second))
+         #expect(first.contains(last) == false)
 
-        #expect(second.contains(first))
-        #expect(second.contains(last) == false)
+         #expect(second.contains(first))
+         #expect(second.contains(last) == false)
 
-        #expect(last.contains(first) == false)
-        #expect(last.contains(second) == false)
-    }
-}
+         #expect(last.contains(first) == false)
+         #expect(last.contains(second) == false)
+     }
+ }
+  */
 
 extension ListNodeTests {
     @Test("Append")

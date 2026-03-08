@@ -94,36 +94,3 @@ extension ListNodeTests {
         #expect(last.isLast)
     }
 }
-
-extension ListNodeTests {
-    @Test("Contains")
-    func contains() throws {
-        let first = ListNode(10)
-        #expect(first.contains(first))
-
-        let second = ListNode(10)
-
-        #expect(first.contains(second) == false)
-
-        first.setNext(second)
-
-        #expect(first.contains(second))
-        #expect(second.contains(first))
-
-        let last = ListNode(30)
-
-        #expect(first.contains(last) == false)
-        #expect(second.contains(last) == false)
-        #expect(last.contains(first) == false)
-        #expect(last.contains(second) == false)
-
-        second.setNext(last)
-
-        #expect(first.contains(last))
-        #expect(second.contains(last))
-        #expect(last.contains(last))
-
-        #expect(last.contains(first))
-        #expect(last.contains(second))
-    }
-}

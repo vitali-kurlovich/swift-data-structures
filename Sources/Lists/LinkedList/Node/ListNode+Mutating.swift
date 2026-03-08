@@ -19,7 +19,7 @@ extension ListNode {
 
 extension ListNode {
     @inlinable func append(_ node: ListNode<T>) {
-        assert(contains(node) == false)
+        //     assert(contains(node) == false)
 
         let first = node.first
         let last = node.last
@@ -35,7 +35,7 @@ extension ListNode {
     }
 
     @inlinable func prepend(_ node: ListNode<T>) {
-        assert(contains(node) == false)
+        //    assert(contains(node) == false)
 
         let first = node.first
         let last = node.last

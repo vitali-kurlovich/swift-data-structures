@@ -61,6 +61,21 @@ public extension LinkedList {
 
 public extension LinkedList {
     @inlinable func contains(_ node: ListNode<T>) -> Bool {
-        first?.contains(node) ?? false
+        guard var current = first else {
+            return false
+        }
+
+        if current === node {
+            return true
+        }
+
+        while let next = current.next {
+            if next === node {
+                return true
+            }
+            current = next
+        }
+
+        return false
     }
 }

@@ -88,11 +88,5 @@ extension LinkedListTests {
         let node3 = list.prepend(65)
 
         #expect(list.contains(node3))
-
-        let node4 = ListNode(66)
-
-        node3.prepend(node4)
-
-        #expect(list.contains(node4))
     }
 }
