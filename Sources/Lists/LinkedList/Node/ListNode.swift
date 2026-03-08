@@ -31,28 +31,6 @@ public extension ListNode {
 }
 
 public extension ListNode {
-    @inlinable var count: Int {
-        var count = 1
-
-        var current = self
-
-        while let next = current.next {
-            current = next
-            count += 1
-        }
-
-        current = self
-
-        while let prev = current.prev {
-            current = prev
-            count += 1
-        }
-
-        return count
-    }
-}
-
-public extension ListNode {
     @inlinable var first: ListNode<T> {
         var current = self
 

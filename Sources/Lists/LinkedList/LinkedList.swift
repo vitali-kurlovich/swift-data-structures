@@ -45,7 +45,17 @@ public extension LinkedList {
 
 public extension LinkedList {
     @inlinable var count: Int {
-        first?.count ?? 0
+        guard var current = first else {
+            return 0
+        }
+        var count = 1
+
+        while let node = current.next {
+            count += 1
+            current = node
+        }
+
+        return count
     }
 }
 

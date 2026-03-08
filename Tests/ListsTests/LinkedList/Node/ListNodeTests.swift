@@ -43,27 +43,6 @@ extension ListNodeTests {
 }
 
 extension ListNodeTests {
-    @Test("Count")
-    func count() throws {
-        let first = ListNode(10)
-        #expect(first.count == 1)
-
-        let second = ListNode(20)
-        first.setNext(second)
-
-        #expect(first.count == 2)
-        #expect(second.count == 2)
-
-        let last = ListNode(30)
-        last.setPrev(second)
-
-        #expect(first.count == 3)
-        #expect(second.count == 3)
-        #expect(last.count == 3)
-    }
-}
-
-extension ListNodeTests {
     @Test("First")
     func first() throws {
         let first = ListNode(10)
