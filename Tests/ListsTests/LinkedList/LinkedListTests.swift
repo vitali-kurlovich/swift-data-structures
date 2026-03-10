@@ -55,7 +55,7 @@ extension LinkedListTests {
         first.append(second)
 
         list.append(node: first)
-        #expect(list.count == 3)
+        #expect(list.count == 2)
     }
 }
 

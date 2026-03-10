@@ -3,101 +3,38 @@
 //
 
 extension ListNode {
-    @inlinable func remove() {
-        defer {
-            self._prev = nil
-            self._next = nil
+    @inlinable func append(_ node: ListNode<T>) {
+        guard node !== self else { return }
+
+        if next === node {
+            assert(node.prev === self)
+            return
         }
 
-        let prevNode = prev
-        let nextNode = next
+        if node === prev {
+            debugPrint(node)
+        }
 
-        prevNode?._next = nextNode
-        nextNode?._prev = prevNode
-    }
-}
+        node.remove()
 
-extension ListNode {
-    @inlinable func append(_ node: ListNode<T>) {
-        //     assert(contains(node) == false)
+        let next = self.next
 
-        let first = node.first
-        let last = node.last
-
-        let left = self
-        let right = next
-
-        left._next = first
-        first._prev = left
-
-        last._next = right
-        right?._prev = last
+        setNext(node)
+        node.setNext(next)
     }
 
     @inlinable func prepend(_ node: ListNode<T>) {
-        //    assert(contains(node) == false)
+        guard node !== self else { return }
 
-        let first = node.first
-        let last = node.last
-
-        let left = prev
-        let right = self
-
-        left?._next = first
-        first._prev = left
-
-        last._next = right
-        right._prev = last
-    }
-}
-
-extension ListNode {
-    @inlinable func swap(with node: ListNode<T>) {
-        guard self !== node else { return }
-
-        if next === node {
-            node._prev = _prev
-            node._prev?._next = node
-
-            _next = node._next
-            _next?._prev = self
-
-            node._next = self
-            _prev = node
-
-        } else if node.next === self {
-            node.swap(with: self)
-        } else {
-            let dstNext = node.next
-            let dstPrev = node.prev
-
-            let srcNext = next
-            let srcPrev = prev
-
-            node._next = srcNext
-            srcNext?._prev = node
-
-            node._prev = srcPrev
-            srcPrev?._next = node
-
-            _next = dstNext
-            dstNext?._prev = self
-
-            _prev = dstPrev
-            dstPrev?._next = self
-        }
-    }
-}
-
-extension ListNode {
-    @inlinable func disconnect() -> ListNode<T>? {
-        guard let next = next else {
-            return nil
+        if prev === node {
+            assert(node.next === self)
+            return
         }
 
-        _next = nil
-        next._prev = nil
+        let prev = self.prev
 
-        return next
+        node.remove()
+        setPrev(node)
+        node.setPrev(prev)
     }
 }

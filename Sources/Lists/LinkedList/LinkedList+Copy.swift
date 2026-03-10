@@ -4,7 +4,9 @@
 
 public extension LinkedList {
     func copy() -> LinkedList<T> {
-        let first = first?.copy()
-        return LinkedList<T>(first: first, last: first?.last)
+        guard let copy = first?.copy() else {
+            return LinkedList<T>()
+        }
+        return LinkedList<T>(first: copy.first, last: copy.last)
     }
 }

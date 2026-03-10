@@ -57,12 +57,21 @@ public extension LinkedList {
 
 public extension LinkedList {
     @inlinable func append(node: ListNode<T>) {
-        if isEmpty {
-            _first = node.first
-            _last = node.last
+        guard node !== last else { return }
+
+        if node === first {
+            _first = node.next
+        }
+
+        node.remove()
+
+        if let last = _last {
+            last.setNext(node)
+            _last = node
+
         } else {
-            _last?.append(node.first)
-            _last = node.last
+            _first = node
+            _last = node
         }
 
         assert(first !== nil)
@@ -82,14 +91,24 @@ public extension LinkedList {
 
 public extension LinkedList {
     @inlinable func prepend(node: ListNode<T>) {
-        if isEmpty {
-            _first = node.first
-            _last = node.last
-        } else {
-            let first = _first!
-            _first = node.first
-            node.last.setNext(first)
+        guard node !== first else { return }
+
+        if node === last {
+            _last = node.prev
         }
+
+        node.remove()
+
+        if let first = _first {
+            node.setNext(first)
+            _first = node
+        } else {
+            _first = node
+            _last = node
+        }
+
+        assert(first !== nil)
+        assert(last !== nil)
 
         assert(first?.prev == nil)
         assert(last?.next == nil)
@@ -107,9 +126,11 @@ public extension LinkedList {
     @inlinable func insert(node: ListNode<T>, after other: ListNode<T>) {
         assert(contains(other))
 
+        guard node !== other else { return }
+
         if other === _last {
             other.append(node)
-            _last = node.last
+            _last = node
         } else {
             other.append(node)
         }
@@ -127,11 +148,20 @@ public extension LinkedList {
     @inlinable func insert(node: ListNode<T>, before other: ListNode<T>) {
         assert(contains(other))
 
-        if other === _first {
-            other.prepend(node)
-            _first = node.first
-        } else {
-            other.prepend(node)
+        guard node !== other else { return }
+
+        if node === _last {
+            _last = node.prev
+        }
+
+        other.prepend(node)
+
+        if node.prev == nil {
+            _first = node
+        }
+
+        if other.next == nil {
+            _last = other
         }
     }
 
@@ -145,39 +175,25 @@ public extension LinkedList {
 
 public extension LinkedList {
     @inlinable func swap(_ node: ListNode<T>, with other: ListNode<T>) {
-        guard node !== other else { return }
-
         assert(contains(node))
         assert(contains(other))
 
         node.swap(with: other)
 
-        if node === _first {
-            _first = other.first
+        if node.prev == nil {
+            _first = node
         }
 
-        if node === _last {
-            _last = other.last
+        if node.next == nil {
+            _last = node
         }
 
-        if other === _first {
-            _first = node.first
+        if other.prev == nil {
+            _first = other
         }
 
-        if other === _last {
-            _last = node.last
+        if other.next == nil {
+            _last = other
         }
-    }
-}
-
-public extension LinkedList {
-    @inlinable func disconnect(by node: ListNode<T>) -> LinkedList<T> {
-        assert(contains(node))
-
-        let second = node.disconnect()
-
-        _last = node
-
-        return LinkedList<T>(first: second, last: second?.last)
     }
 }

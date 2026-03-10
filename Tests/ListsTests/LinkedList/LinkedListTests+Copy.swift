@@ -19,7 +19,9 @@ extension LinkedListTests {
         list.append(6)
         list.prepend(7)
 
-        #expect(list.copy() == list)
-        #expect(list.copy() !== list)
+        let copy = list.copy()
+
+        #expect(copy == list)
+        #expect(copy !== list)
     }
 }

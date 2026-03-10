@@ -3,28 +3,34 @@
 //
 
 public extension ListNode {
-    func copy() -> ListNode<T> {
+    func copy() -> (first: ListNode<T>, copy: ListNode<T>, last: ListNode<T>) {
         let root = ListNode(value)
-        var parent = root
+        var last = root
 
-        var current = prev
-        while let node = current {
-            current = current?.prev
-            let new_node = ListNode(node.value)
-            parent.prepend(new_node)
-            parent = new_node
+        var right = self
+
+        while let node = right.next {
+            right = node
+
+            let copy = ListNode(node.value)
+
+            last.append(copy)
+            last = copy
         }
 
-        current = next
-        parent = root
+        var first = root
 
-        while let node = current {
-            current = current?.next
-            let new_node = ListNode(node.value)
-            parent.append(new_node)
-            parent = new_node
+        var left = self
+
+        while let node = left.prev {
+            left = node
+
+            let copy = ListNode(node.value)
+
+            first.prepend(copy)
+            first = copy
         }
 
-        return root
+        return (first: first, copy: root, last: last)
     }
 }

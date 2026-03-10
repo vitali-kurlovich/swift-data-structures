@@ -30,34 +30,36 @@ public extension ListNode {
     }
 }
 
-public extension ListNode {
-    @inlinable var first: ListNode<T> {
-        var current = self
+/*
+ public extension ListNode {
+     @inlinable var first: ListNode<T> {
+         var current = self
 
-        while let prev = current.prev {
-            current = prev
-        }
+         while let prev = current.prev {
+             current = prev
+         }
 
-        return current
-    }
+         return current
+     }
 
-    @inlinable var isFirst: Bool {
-        prev == nil
-    }
-}
+     @inlinable var isFirst: Bool {
+         prev == nil
+     }
+ }
 
-public extension ListNode {
-    @inlinable var last: ListNode<T> {
-        var current = self
+ public extension ListNode {
+     @inlinable var last: ListNode<T> {
+         var current = self
 
-        while let next = current.next {
-            current = next
-        }
+         while let next = current.next {
+             current = next
+         }
 
-        return current
-    }
+         return current
+     }
 
-    @inlinable var isLast: Bool {
-        next == nil
-    }
-}
+     @inlinable var isLast: Bool {
+         next == nil
+     }
+ }
+  */
