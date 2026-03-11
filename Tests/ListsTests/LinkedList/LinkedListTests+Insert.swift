@@ -212,6 +212,7 @@ extension LinkedListTests {
         #expect(node0.prev === nil)
         #expect(node0.next === nil)
 
+        // [node0]
         let node1 = list.insert(1, before: node0)
         // [node1 <-> node0]
 

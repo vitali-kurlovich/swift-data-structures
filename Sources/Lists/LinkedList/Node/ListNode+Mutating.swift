@@ -11,10 +11,6 @@ extension ListNode {
             return
         }
 
-        if node === prev {
-            debugPrint(node)
-        }
-
         node.remove()
 
         let next = self.next
@@ -31,9 +27,9 @@ extension ListNode {
             return
         }
 
+        node.remove()
         let prev = self.prev
 
-        node.remove()
         setPrev(node)
         node.setPrev(prev)
     }
