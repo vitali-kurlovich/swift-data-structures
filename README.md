@@ -1,3 +1,5 @@
+[![swift-algorithms](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/swift.yml/badge.svg)](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/swift.yml)
+
 # swift-data-structures
 
 Package **swift-data-structures** containts two modules [Lists](https://vitali-kurlovich.github.io/swift-data-structures/lists/documentation/lists/) and [Caches](https://vitali-kurlovich.github.io/swift-data-structures/caches/documentation/caches/)
