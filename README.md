@@ -1,4 +1,7 @@
-[![swift-algorithms](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/swift.yml/badge.svg)](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/swift.yml)
+[![Build And Test](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/swift.yml/badge.svg)](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/swift.yml)
+[![Generate DocC](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/doc.yml/badge.svg)](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/doc.yml)
+[![codecov](https://codecov.io/gh/vitali-kurlovich/swift-data-structures/graph/badge.svg?token=5HMJ5YNPXG)](https://codecov.io/gh/vitali-kurlovich/swift-data-structures)
+
 
 # swift-data-structures
 
