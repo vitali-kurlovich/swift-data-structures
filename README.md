@@ -1,6 +1,7 @@
 [![MacOS](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/macos.yml/badge.svg)](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/macos.yml)
 [![Linux](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/linux.yml/badge.svg)](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/linux.yml)
 [![Generate DocC](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/doc.yml/badge.svg)](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/doc.yml)
+[![Benchmarks](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/benchmark.yml/badge.svg)](https://github.com/vitali-kurlovich/swift-data-structures/actions/workflows/benchmark.yml)
 [![codecov](https://codecov.io/gh/vitali-kurlovich/swift-data-structures/graph/badge.svg?token=5HMJ5YNPXG)](https://codecov.io/gh/vitali-kurlovich/swift-data-structures)
 
 # swift-data-structures
