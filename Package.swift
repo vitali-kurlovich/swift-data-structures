@@ -21,7 +21,7 @@ let package = Package(
         .library(name: "Caches", targets: ["Caches"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/vitali-kurlovich/Benchmarks", from: "0.3.0"),
+        .package(url: "https://github.com/vitali-kurlovich/swift-benchmarks", from: "0.3.0"),
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.7.0"),
         .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.1.0"),
     ],
@@ -49,7 +49,7 @@ let package = Package(
             name: "BenchmarkCLI",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
-                "Benchmarks",
+                .product(name: "Benchmarks", package: "swift-benchmarks"),
                 "Lists", "Caches",
             ],
             path: "Benchmarks"
