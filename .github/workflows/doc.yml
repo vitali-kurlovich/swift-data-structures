@@ -36,7 +36,7 @@ jobs:
         uses: SwiftyLab/setup-swift@latest
 
       - name: Make dir for static content
-        run: mkdir pages && mkdir ./pages/lists && mkdir ./pages/caches
+        run: mkdir pages && mkdir ./pages/lists && mkdir ./pages/caches && mkdir ./pages/probabilistic
       
       - name: Generate DocC Lists
         run: swift package --allow-writing-to-directory ./.docs generate-documentation --target Lists --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures/lists
@@ -49,6 +49,12 @@ jobs:
 
       - name: Copy generated content into pages dir
         run: cp -r ./.docs/* ./pages/caches 
+
+      - name: Generate DocC Probabilistic
+        run: swift package --allow-writing-to-directory ./.docs generate-documentation --target Probabilistic --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures/probabilistic
+
+      - name: Copy generated content into pages dir
+        run: cp -r ./.docs/* ./pages/probabilistic 
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
