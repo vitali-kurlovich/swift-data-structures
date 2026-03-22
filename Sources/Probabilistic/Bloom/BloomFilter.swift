@@ -2,6 +2,7 @@
 //  Created by Vitali Kurlovich on 21.03.26.
 //
 
+import BitCollections
 import Collections
 
 public protocol BloomFilterConfiguration {
@@ -13,8 +14,10 @@ public protocol BloomFilterConfiguration {
 ///
 /// [wiki Bloom filter](https://en.wikipedia.org/wiki/Bloom_filter)
 public struct BloomFilter<Configuration: BloomFilterConfiguration, Element: Hashable> {
+    @usableFromInline
     var storage: BitArray
 
+    @inlinable
     public init() {
         storage = BitArray(repeating: false, count: Int(Configuration.size))
     }
@@ -26,6 +29,7 @@ public extension BloomFilter {
     /// - Parameter element: inseted element
     ///
     /// - Complexity: O(1)
+    @inlinable
     mutating func insert(_ element: Element) {
         var hasher = Hasher()
         element.hash(into: &hasher)
@@ -43,6 +47,7 @@ public extension BloomFilter {
     /// - Returns: If false, guarantees the absence of an element in the filter; if true, the filter possibly contains the element, but it can be a false positive result. [more info](https://en.wikipedia.org/wiki/Bloom_filter#Probability_of_false_positives)
     ///
     /// - Complexity: O(1)
+    @inlinable
     func contains(_ element: Element) -> Bool {
         var hasher = Hasher()
         element.hash(into: &hasher)
@@ -55,6 +60,7 @@ public extension BloomFilter {
 
 public extension BloomFilter {
     /// Reset the filter, all elements set to false
+    @inlinable
     mutating func removeAll() {
         storage.fill(with: false)
     }
