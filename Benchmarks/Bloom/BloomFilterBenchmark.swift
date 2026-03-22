@@ -3,7 +3,7 @@
 //
 
 import Benchmarks
-import Caches
+import Probabilistic
 
 struct BloomFlilterBenchmark<Configuration: BloomFilterConfiguration> {
     let insertions: Int

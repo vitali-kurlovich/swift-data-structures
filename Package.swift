@@ -12,13 +12,9 @@ let package = Package(
         .tvOS(.v13),
     ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "Lists",
-            targets: ["Lists"]
-        ),
-
+        .library(name: "Lists", targets: ["Lists"]),
         .library(name: "Caches", targets: ["Caches"]),
+        .library(name: "Probabilistic", targets: ["Probabilistic"]),
     ],
     dependencies: [
         .package(url: "https://github.com/vitali-kurlovich/swift-benchmarks", from: "0.3.0"),
@@ -36,17 +32,30 @@ let package = Package(
         .target(
             name: "Caches",
             dependencies: [
-                .product(name: "Collections", package: "swift-collections"),
                 "Lists",
             ]
         ),
+
+        .target(
+            name: "Probabilistic",
+            dependencies: [
+                .product(name: "Collections", package: "swift-collections"),
+            ]
+        ),
+
         .testTarget(
             name: "ListsTests",
             dependencies: ["Lists"]
         ),
+
         .testTarget(
             name: "CachesTests",
             dependencies: ["Lists", "Caches"]
+        ),
+
+        .testTarget(
+            name: "ProbabilisticTests",
+            dependencies: ["Probabilistic"]
         ),
 
         .executableTarget(
@@ -54,7 +63,7 @@ let package = Package(
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 .product(name: "Benchmarks", package: "swift-benchmarks"),
-                "Lists", "Caches",
+                "Lists", "Caches", "Probabilistic",
             ],
             path: "Benchmarks"
 
