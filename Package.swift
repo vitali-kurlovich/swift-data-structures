@@ -24,6 +24,7 @@ let package = Package(
         .package(url: "https://github.com/vitali-kurlovich/swift-benchmarks", from: "0.3.0"),
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.7.0"),
         .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.1.0"),
+        .package(url: "https://github.com/apple/swift-collections.git", .upToNextMinor(from: "1.4.0")),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -34,7 +35,10 @@ let package = Package(
 
         .target(
             name: "Caches",
-            dependencies: ["Lists"]
+            dependencies: [
+                .product(name: "Collections", package: "swift-collections"),
+                "Lists",
+            ]
         ),
         .testTarget(
             name: "ListsTests",

@@ -13,7 +13,8 @@ struct BenchmarkCLI: ParsableCommand {
     mutating func run() throws {
         if #available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *) {
             // runLinkedListBenchmark()
-            runCacheBenchmark()
+            // runCacheBenchmark()
+            runBloomFilterBenchmark()
         } else {
             print("Cannot be run on this os version.")
         }
