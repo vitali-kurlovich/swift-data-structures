@@ -15,4 +15,6 @@ Package **swift-data-structures** containts two modules [Lists](https://vitali-k
 
 - [Caches](https://vitali-kurlovich.github.io/swift-data-structures/caches/documentation/caches/)
   - [Cache](https://vitali-kurlovich.github.io/swift-data-structures/caches/documentation/caches/cache) - A Least Recently Used (LRU) Cache is a caching algorithm that removes the least recently accessed items first when the cache reaches its maximum capacity. 
-  - [BloomFilter](https://vitali-kurlovich.github.io/swift-data-structures/caches/documentation/caches/bloomfilter) - A Bloom filter is a space-efficient, probabilistic data structure used to test set membership, answering if an element is "definitely not in set" or "probably in set" [more info](https://en.wikipedia.org/wiki/Bloom_filter)
+ 
+ - [Probabilistic](https://vitali-kurlovich.github.io/swift-data-structures/probabilistic/documentation/probabilistic/) - probabilistic data structures
+  - [BloomFilter](https://vitali-kurlovich.github.io/swift-data-structures/probabilistic/documentation/probabilistic/bloomfilter) - A Bloom filter is a space-efficient, probabilistic data structure used to test set membership, answering if an element is "definitely not in set" or "probably in set" [more info](https://en.wikipedia.org/wiki/Bloom_filter)
