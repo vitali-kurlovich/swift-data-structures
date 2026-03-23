@@ -73,7 +73,7 @@ let package = Package(
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 .product(name: "Benchmarks", package: "swift-benchmarks"),
-                "Lists", "Caches", "Probabilistic",
+                "Lists", "Caches", "Probabilistic", "Random",
             ],
             path: "Benchmarks"
 

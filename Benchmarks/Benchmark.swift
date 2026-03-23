@@ -14,7 +14,9 @@ struct BenchmarkCLI: ParsableCommand {
         if #available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *) {
             // runLinkedListBenchmark()
             // runCacheBenchmark()
-            runBloomFilterBenchmark()
+            // runBloomFilterBenchmark()
+            runRandomGeneratorBenchmark()
+            
         } else {
             print("Cannot be run on this os version.")
         }
