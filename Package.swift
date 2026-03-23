@@ -15,6 +15,7 @@ let package = Package(
         .library(name: "Lists", targets: ["Lists"]),
         .library(name: "Caches", targets: ["Caches"]),
         .library(name: "Probabilistic", targets: ["Probabilistic"]),
+        .library(name: "Random", targets: ["Random"]),
     ],
     dependencies: [
         .package(url: "https://github.com/vitali-kurlovich/swift-benchmarks", from: "0.3.0"),
@@ -23,8 +24,6 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-collections.git", .upToNextMinor(from: "1.4.0")),
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "Lists"
         ),
@@ -43,6 +42,12 @@ let package = Package(
             ]
         ),
 
+        .target(
+            name: "Random",
+            dependencies: [
+            ]
+        ),
+
         .testTarget(
             name: "ListsTests",
             dependencies: ["Lists"]
@@ -56,6 +61,11 @@ let package = Package(
         .testTarget(
             name: "ProbabilisticTests",
             dependencies: ["Probabilistic"]
+        ),
+
+        .testTarget(
+            name: "RandomTests",
+            dependencies: ["Random"]
         ),
 
         .executableTarget(
