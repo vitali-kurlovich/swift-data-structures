@@ -36,25 +36,32 @@ jobs:
         uses: SwiftyLab/setup-swift@latest
 
       - name: Make dir for static content
-        run: mkdir pages && mkdir ./pages/lists && mkdir ./pages/caches && mkdir ./pages/probabilistic
+        run: mkdir pages 
       
       - name: Generate DocC Lists
-        run: swift package --allow-writing-to-directory ./.docs generate-documentation --target Lists --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures/lists
+        run: mkdir ./pages/lists && swift package --allow-writing-to-directory ./.docs generate-documentation --target Lists --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures/lists
 
       - name: Copy generated content into pages dir
         run: cp -r ./.docs/* ./pages/lists 
 
       - name: Generate DocC Caches
-        run: swift package --allow-writing-to-directory ./.docs generate-documentation --target Caches --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures/caches
+        run: mkdir ./pages/caches && swift package --allow-writing-to-directory ./.docs generate-documentation --target Caches --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures/caches
 
       - name: Copy generated content into pages dir
         run: cp -r ./.docs/* ./pages/caches 
 
       - name: Generate DocC Probabilistic
-        run: swift package --allow-writing-to-directory ./.docs generate-documentation --target Probabilistic --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures/probabilistic
+        run: mkdir ./pages/probabilistic && swift package --allow-writing-to-directory ./.docs generate-documentation --target Probabilistic --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures/probabilistic
 
       - name: Copy generated content into pages dir
         run: cp -r ./.docs/* ./pages/probabilistic 
+
+      - name: Generate DocC Random
+        run: mkdir ./pages/random && swift package --allow-writing-to-directory ./.docs generate-documentation --target Random --output-path ./.docs --disable-indexing --transform-for-static-hosting --hosting-base-path swift-data-structures/random
+
+      - name: Copy generated content into pages dir
+        run: cp -r ./.docs/* ./pages/random 
+
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
