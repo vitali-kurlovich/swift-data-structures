@@ -19,3 +19,5 @@ Package **swift-data-structures** containts two modules [Lists](https://vitali-k
  - [Probabilistic](https://vitali-kurlovich.github.io/swift-data-structures/probabilistic/documentation/probabilistic/) - probabilistic data structures
    
     - [BloomFilter](https://vitali-kurlovich.github.io/swift-data-structures/probabilistic/documentation/probabilistic/bloomfilter) - A Bloom filter is a space-efficient, probabilistic data structure used to test set membership, answering if an element is "definitely not in set" or "probably in set" [more info](https://en.wikipedia.org/wiki/Bloom_filter)
+
+ - [Random](https://vitali-kurlovich.github.io/swift-data-structures/random/documentation/random/) - Random number generators
