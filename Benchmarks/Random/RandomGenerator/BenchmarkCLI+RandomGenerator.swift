@@ -17,13 +17,6 @@ extension BenchmarkCLI {
             mt19937Benshmark.run()
         }
 
-        if #available(macOS 26.0, *) {
-            let inlineMT19937Benshmark = RandomGeneratorBenchmark(count: count, InlineMT19937RandomGenegator())
-            benchmark(name: inlineMT19937Benshmark.description) {
-                mt19937Benshmark.run()
-            }
-        }
-
         benchmark(name: "SwiftRandomGenegator") {
             for _ in 0 ..< count {
                 _ = UInt64.random(in: UInt64.min ... UInt64.max)

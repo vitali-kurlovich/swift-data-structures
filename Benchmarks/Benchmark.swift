@@ -16,7 +16,7 @@ struct BenchmarkCLI: ParsableCommand {
             // runCacheBenchmark()
             // runBloomFilterBenchmark()
             runRandomGeneratorBenchmark()
-            
+
         } else {
             print("Cannot be run on this os version.")
         }

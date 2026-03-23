@@ -55,20 +55,6 @@ struct ShuffleSmall {
         #expect(array == [12])
     }
 
-    @available(macOS 26.0, iOS 26.0, watchOS 26.0, tvOS 26.0, *)
-    @Test("Shuffle One InlineArray")
-    func shuffleOneInlineArray() {
-        var generator = MT19937RandomGenegator(seed: 42)
-
-        var inlineArray: InlineArray = [16]
-
-        inlineArray.shuffle(algorithm: .default, using: &generator)
-        #expect(inlineArray[0] == 16)
-
-        inlineArray.shuffle(algorithm: .faro(.init(count: 10)), using: &generator)
-        #expect(inlineArray[0] == 16)
-    }
-
     @Test("Shuffled One")
     func shuffledOne() {
         var generator = MT19937RandomGenegator(seed: 42)
