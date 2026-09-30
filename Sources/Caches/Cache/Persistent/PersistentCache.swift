@@ -2,10 +2,9 @@
 //  Created by Kurlovich Vitali on 9/30/26.
 //
 
-public final class PersistentCache<Storage: PersistentKeyValueStorage> where Storage.Key: Hashable {
-    public typealias Key = Storage.Key
-    public typealias Value = Storage.Value
-
+public final class PersistentCache<Key: Hashable & Codable, Value: Codable, Storage: PersistentKeyValueStorage>
+    where Storage.Key == Key, Storage.Value == Value
+{
     public let cache: Cache<Key, Value>
     public let storage: Storage
 

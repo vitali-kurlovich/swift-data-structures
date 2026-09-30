@@ -8,22 +8,13 @@ import Testing
 
 struct PersistentCacheTests {
     @Test func persistentCache() async throws {
-        // 1. Get the system temporary directory URL
-        let tempDir = FileManager.default.temporaryDirectory
+        let name = UUID().uuidString
 
-        // 2. Create a unique filename for isolation
-        let fileURL = tempDir.appendingPathComponent(UUID().uuidString + ".cache")
-
-        // 3. Clean up the file automatically when the test finishes
-        defer {
-            try? FileManager.default.removeItem(at: fileURL)
-        }
-
-        let storage = JSONFilePersistentKeyValueStorage<Int, String>(
-            fileUrl: fileURL
+        let cache = PersistentCache(
+            named: name,
+            keyType: Int.self,
+            valueType: String.self
         )
-
-        let cache = PersistentCache(storage: storage)
 
         await #expect(throws: (any Error).self) {
             _ = try await cache.load()
@@ -38,7 +29,8 @@ struct PersistentCacheTests {
 
         try await cache.save()
 
-        let secondCache = PersistentCache(storage: storage)
+        let secondCache = PersistentCache(named: name, keyType: Int.self,
+                                          valueType: String.self)
         try await secondCache.load()
 
         #expect(secondCache[1] == "1")
@@ -55,5 +47,15 @@ struct PersistentCacheTests {
         #expect(cache[1] == "1")
         #expect(cache[2] == "2")
         #expect(cache[3] == "3")
+
+        #expect(cache.fileUrl == cache.storage.fileUrl)
+
+        #expect(FileManager.default
+            .fileExists(atPath: cache.fileUrl.path()) == true)
+
+        try cache.removeCacheFile()
+
+        #expect(FileManager.default
+            .fileExists(atPath: cache.fileUrl.path()) == false)
     }
 }
