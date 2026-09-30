@@ -11,22 +11,17 @@ import Testing
 
     struct FilePersistentKeyValueStorageTests {
         @Test func fileStorage() async throws {
-            // 1. Get the system temporary directory URL
-            let tempDir = FileManager.default.temporaryDirectory
-
-            // 2. Create a unique filename for isolation
-            let fileURL = tempDir.appendingPathComponent(UUID().uuidString + ".cache")
-
-            // 3. Clean up the file automatically when the test finishes
-            defer {
-                try? FileManager.default.removeItem(at: fileURL)
-            }
+            let name = UUID().uuidString
 
             let storage = FilePersistentKeyValueStorage<Int, String, JSONDecoder, JSONEncoder>(
-                fileUrl: fileURL,
+                named: name,
                 decoder: JSONDecoder(),
                 encoder: JSONEncoder()
             )
+
+            #expect(throws: (any Error).self) {
+                _ = try storage.removeFile()
+            }
 
             await #expect(throws: (any Error).self) {
                 _ = try await storage.load()
@@ -44,6 +39,14 @@ import Testing
 
             #expect(sequence[1].key == 2)
             #expect(sequence[1].value == "2")
+
+            #expect(FileManager.default
+                .fileExists(atPath: storage.fileUrl.path()) == true)
+
+            try storage.removeFile()
+
+            #expect(FileManager.default
+                .fileExists(atPath: storage.fileUrl.path()) == false)
         }
     }
 
@@ -51,20 +54,15 @@ import Testing
 
 struct JSONFilePersistentKeyValueStorageTests {
     @Test func fileStorage() async throws {
-        // 1. Get the system temporary directory URL
-        let tempDir = FileManager.default.temporaryDirectory
-
-        // 2. Create a unique filename for isolation
-        let fileURL = tempDir.appendingPathComponent(UUID().uuidString + ".cache")
-
-        // 3. Clean up the file automatically when the test finishes
-        defer {
-            try? FileManager.default.removeItem(at: fileURL)
-        }
+        let name = UUID().uuidString
 
         let storage = JSONFilePersistentKeyValueStorage<Int, String>(
-            fileUrl: fileURL
+            named: name
         )
+
+        #expect(throws: (any Error).self) {
+            _ = try storage.removeFile()
+        }
 
         await #expect(throws: (any Error).self) {
             _ = try await storage.load()
@@ -82,5 +80,13 @@ struct JSONFilePersistentKeyValueStorageTests {
 
         #expect(sequence[1].key == 2)
         #expect(sequence[1].value == "2")
+
+        #expect(FileManager.default
+            .fileExists(atPath: storage.fileUrl.path()) == true)
+
+        try storage.removeFile()
+
+        #expect(FileManager.default
+            .fileExists(atPath: storage.fileUrl.path()) == false)
     }
 }

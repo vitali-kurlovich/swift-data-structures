@@ -12,7 +12,7 @@ import Foundation
         Key: Codable, Value: Codable,
         Decoder: TopLevelDecoder,
         Encoder: TopLevelEncoder
-    >: PersistentKeyValueStorage
+    >: PersistentKeyValueStorage, FileStorage
         where Decoder.Input == Data, Encoder.Output == Data
     {
         public let fileUrl: URL
@@ -31,7 +31,7 @@ import Foundation
         }
 
         public func load() async throws -> some Sequence<(key: Key, value: Value)> {
-            let data = try Data(contentsOf: fileUrl)
+            let data: Data = try loadFile()
 
             let keyValues = try decoder.decode(StoredKeyValues.self, from: data)
 
@@ -52,7 +52,20 @@ import Foundation
             let stored = StoredKeyValues(keys: keys, values: values)
             let data = try encoder.encode(stored)
 
-            try data.write(to: fileUrl, options: .atomic)
+            try saveFile(data)
+        }
+    }
+
+    extension FilePersistentKeyValueStorage: Sendable where Decoder: Sendable, Encoder: Sendable {}
+
+    public extension FilePersistentKeyValueStorage {
+        /**
+         Create file in the temporaryDirectory with name {named}.cache
+         */
+        init(named: String, decoder: Decoder, encoder: Encoder) {
+            let tempDir = FileManager.default.temporaryDirectory
+            let fileURL = tempDir.appendingPathComponent(named + ".cache")
+            self.init(fileUrl: fileURL, decoder: decoder, encoder: encoder)
         }
     }
 
@@ -60,7 +73,7 @@ import Foundation
 
 public struct JSONFilePersistentKeyValueStorage<
     Key: Codable, Value: Codable
->: PersistentKeyValueStorage {
+>: PersistentKeyValueStorage, FileStorage, Sendable {
     public let fileUrl: URL
     public let decoder: JSONDecoder
     public let encoder: JSONEncoder
@@ -81,7 +94,7 @@ public struct JSONFilePersistentKeyValueStorage<
     }
 
     public func load() async throws -> some Sequence<(key: Key, value: Value)> {
-        let data = try Data(contentsOf: fileUrl)
+        let data: Data = try loadFile()
 
         let keyValues = try decoder.decode(StoredKeyValues.self, from: data)
 
@@ -102,6 +115,17 @@ public struct JSONFilePersistentKeyValueStorage<
         let stored = StoredKeyValues(keys: keys, values: values)
         let data = try encoder.encode(stored)
 
-        try data.write(to: fileUrl, options: .atomic)
+        try saveFile(data)
+    }
+}
+
+public extension JSONFilePersistentKeyValueStorage {
+    /**
+     Create file in the temporaryDirectory with name {named}.cache
+     */
+    init(named: String, decoder _: JSONDecoder = JSONDecoder(), encoder _: JSONEncoder = JSONEncoder()) {
+        let tempDir = FileManager.default.temporaryDirectory
+        let fileURL = tempDir.appendingPathComponent(named + ".cache")
+        self.init(fileUrl: fileURL)
     }
 }
