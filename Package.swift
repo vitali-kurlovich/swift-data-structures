@@ -1,4 +1,4 @@
-// swift-tools-version: 6.2
+// swift-tools-version: 6.4
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,10 +6,10 @@ import PackageDescription
 let package = Package(
     name: "swift-data-structures",
     platforms: [
-        .macOS(.v13),
-        .iOS(.v13),
-        .watchOS(.v6),
-        .tvOS(.v13),
+        .macOS(.v14),
+        .iOS(.v16),
+        .watchOS(.v10),
+        .tvOS(.v17),
     ],
     products: [
         .library(name: "Lists", targets: ["Lists"]),
@@ -25,47 +25,47 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Lists"
+            name: "Lists",
         ),
 
         .target(
             name: "Caches",
             dependencies: [
                 "Lists",
-            ]
+            ],
         ),
 
         .target(
             name: "Probabilistic",
             dependencies: [
                 .product(name: "Collections", package: "swift-collections"),
-            ]
+            ],
         ),
 
         .target(
             name: "Random",
             dependencies: [
-            ]
+            ],
         ),
 
         .testTarget(
             name: "ListsTests",
-            dependencies: ["Lists"]
+            dependencies: ["Lists"],
         ),
 
         .testTarget(
             name: "CachesTests",
-            dependencies: ["Lists", "Caches"]
+            dependencies: ["Lists", "Caches"],
         ),
 
         .testTarget(
             name: "ProbabilisticTests",
-            dependencies: ["Probabilistic"]
+            dependencies: ["Probabilistic"],
         ),
 
         .testTarget(
             name: "RandomTests",
-            dependencies: ["Random"]
+            dependencies: ["Random"],
         ),
 
         .executableTarget(
@@ -75,8 +75,9 @@ let package = Package(
                 .product(name: "Benchmarks", package: "swift-benchmarks"),
                 "Lists", "Caches", "Probabilistic", "Random",
             ],
-            path: "Benchmarks"
+            path: "Benchmarks",
 
         ),
-    ]
+    ],
+    swiftLanguageModes: [.v6],
 )
