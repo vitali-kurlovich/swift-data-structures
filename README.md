@@ -14,7 +14,8 @@ Package **swift-data-structures** containts two modules [Lists](https://vitali-k
    - [LinkedList<T>](https://vitali-kurlovich.github.io/swift-data-structures/lists/documentation/lists/linkedlist) - generic implementation of [Doubly Linked List](https://en.wikipedia.org/wiki/Doubly_linked_list)
 
 - [Caches](https://vitali-kurlovich.github.io/swift-data-structures/caches/documentation/caches/)
-   - [Cache](https://vitali-kurlovich.github.io/swift-data-structures/caches/documentation/caches/cache) - A Least Recently Used (LRU) Cache is a caching algorithm that removes the least recently accessed items first when the cache reaches its maximum capacity. 
+   - [Cache](https://vitali-kurlovich.github.io/swift-data-structures/caches/documentation/caches/cache) - A Least Recently Used (LRU) Cache is a caching algorithm that removes the least recently accessed items first when the cache reaches its maximum capacity.
+   - [PersistentCache](https://vitali-kurlovich.github.io/swift-data-structures/caches/documentation/caches/persistentcache) - Persistent stored cache for storing data on the file system
  
  - [Probabilistic](https://vitali-kurlovich.github.io/swift-data-structures/probabilistic/documentation/probabilistic/) - probabilistic data structures
    
