@@ -7,7 +7,7 @@ import Lists
 /**
  An LRU (Least Recently Used) Cache is a data structure that stores a limited number of items, automatically evicting the oldest, least recently accessed data when capacity is reached.
  */
-public final class Cache<Key: Hashable, T>: CacheProtocol {
+public final class Cache<Key: Hashable, T>: CacheProtocol, @unchecked Sendable {
     public typealias Value = T
     /// The name of the cache.
     public var name: String

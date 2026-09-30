@@ -2,7 +2,7 @@
 //  Created by Kurlovich Vitali on 9/30/26.
 //
 
-public final class PersistentCache<Key: Hashable & Codable, Value: Codable, Storage: PersistentKeyValueStorage>
+public final class PersistentCache<Key: Hashable & Codable, Value: Codable, Storage: PersistentKeyValueStorage>: Sendable
     where Storage.Key == Key, Storage.Value == Value
 {
     public let cache: Cache<Key, Value>

@@ -2,7 +2,7 @@
 //  Created by Kurlovich Vitali on 9/30/26.
 //
 
-public protocol PersistentKeyValueStorage {
+public nonisolated protocol PersistentKeyValueStorage: Sendable {
     associatedtype Key
     associatedtype Value
     associatedtype PersistentOutput: Sequence<(key: Key, value: Value)>
