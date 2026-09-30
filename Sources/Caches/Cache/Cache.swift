@@ -97,7 +97,7 @@ public extension Cache {
         let reachedCostLimit = totalCostLimit > 0 && (totalCost + cost > totalCostLimit)
         let reachedCountLimit = countLimit > 0 && totalCount >= countLimit
 
-        if storage.isEmpty || !(reachedCostLimit || reachedCountLimit) {
+        if storage.isEmpty || map[key] != nil || !(reachedCostLimit || reachedCountLimit) {
             let node = storage.prepend(stored)
             map[key] = node
             totalCost += cost
@@ -181,6 +181,29 @@ private extension Cache {
             map.removeValue(forKey: node.value.key)
             totalCost -= node.value.cost
             totalCount -= 1
+        }
+    }
+}
+
+extension Cache: Sequence {
+    public typealias Element = (key: Key, value: T)
+
+    public func makeIterator() -> Iterator {
+        Iterator(iterator: map.makeIterator())
+    }
+
+    public struct Iterator: IteratorProtocol {
+        var iterator: [Key: MapValue].Iterator
+
+        public typealias Element = Cache.Element
+
+        public mutating func next() -> Cache<Key, T>.Element? {
+            if let next = iterator.next() {
+                let value = next.value.value.value
+
+                return (key: next.key, value: value)
+            }
+            return nil
         }
     }
 }

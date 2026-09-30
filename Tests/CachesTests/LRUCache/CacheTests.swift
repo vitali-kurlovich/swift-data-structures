@@ -60,7 +60,7 @@ extension CacheTests {
     }
 }
 
-//
+///
 extension CacheTests {
     @Test("Contains")
     func contains() {
@@ -355,5 +355,35 @@ extension CacheTests {
 
         #expect(cache.dropLast() == nil)
         #expect(cache.totalCount == 0)
+    }
+}
+
+extension CacheTests {
+    @Test("Sequance")
+    func sequance() {
+        let cache = Cache<Int, String>(countLimit: 4)
+
+        cache.push(key: 0, value: "0")
+        cache.push(key: 1, value: "1")
+        cache.push(key: 2, value: "2")
+        cache.push(key: 3, value: "3")
+        cache.push(key: 2, value: "2+")
+
+        let result = Array(cache).sorted { l, r in
+            l.key < r.key
+        }
+
+        #expect(result.count == 4)
+        #expect(result[0].key == 0)
+        #expect(result[0].value == "0")
+
+        #expect(result[1].key == 1)
+        #expect(result[1].value == "1")
+
+        #expect(result[2].key == 2)
+        #expect(result[2].value == "2+")
+
+        #expect(result[3].key == 3)
+        #expect(result[3].value == "3")
     }
 }
