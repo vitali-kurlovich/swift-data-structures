@@ -7,6 +7,6 @@ public protocol PersistentKeyValueStorage {
     associatedtype Value
     associatedtype PersistentOutput: Sequence<(key: Key, value: Value)>
 
-    func load() throws -> PersistentOutput
-    func save(_ cachedData: any Sequence<(key: Key, value: Value)>) throws
+    func load() async throws -> PersistentOutput
+    func save(_ cachedData: any Sequence<(key: Key, value: Value)>) async throws
 }

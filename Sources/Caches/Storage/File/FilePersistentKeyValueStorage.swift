@@ -30,7 +30,7 @@ import Foundation
             public let values: [Value]
         }
 
-        public func load() throws -> some Sequence<(key: Key, value: Value)> {
+        public func load() async throws -> some Sequence<(key: Key, value: Value)> {
             let data = try Data(contentsOf: fileUrl)
 
             let keyValues = try decoder.decode(StoredKeyValues.self, from: data)
@@ -40,7 +40,7 @@ import Foundation
             }
         }
 
-        public func save(_ cachedData: any Sequence<(key: Key, value: Value)>) throws {
+        public func save(_ cachedData: any Sequence<(key: Key, value: Value)>) async throws {
             var keys: [Key] = []
             var values: [Value] = []
 
@@ -80,7 +80,7 @@ public struct JSONFilePersistentKeyValueStorage<
         public let values: [Value]
     }
 
-    public func load() throws -> some Sequence<(key: Key, value: Value)> {
+    public func load() async throws -> some Sequence<(key: Key, value: Value)> {
         let data = try Data(contentsOf: fileUrl)
 
         let keyValues = try decoder.decode(StoredKeyValues.self, from: data)
@@ -90,7 +90,7 @@ public struct JSONFilePersistentKeyValueStorage<
         }
     }
 
-    public func save(_ cachedData: any Sequence<(key: Key, value: Value)>) throws {
+    public func save(_ cachedData: any Sequence<(key: Key, value: Value)>) async throws {
         var keys: [Key] = []
         var values: [Value] = []
 

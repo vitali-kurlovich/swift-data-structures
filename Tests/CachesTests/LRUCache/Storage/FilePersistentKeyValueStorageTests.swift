@@ -10,7 +10,7 @@ import Testing
     import Combine
 
     struct FilePersistentKeyValueStorageTests {
-        @Test func fileStorage() throws {
+        @Test func fileStorage() async throws {
             // 1. Get the system temporary directory URL
             let tempDir = FileManager.default.temporaryDirectory
 
@@ -28,15 +28,15 @@ import Testing
                 encoder: JSONEncoder()
             )
 
-            #expect(throws: (any Error).self) {
-                _ = try storage.load()
+            await #expect(throws: (any Error).self) {
+                _ = try await storage.load()
             }
 
             let sequence = [(key: 1, value: "1"), (key: 2, value: "2")]
 
-            try storage.save(sequence)
+            try await storage.save(sequence)
 
-            let items = try Array(storage.load())
+            let items = try await Array(storage.load())
             #expect(sequence.count == items.count)
 
             #expect(sequence[0].key == 1)
@@ -50,7 +50,7 @@ import Testing
 #endif
 
 struct JSONFilePersistentKeyValueStorageTests {
-    @Test func fileStorage() throws {
+    @Test func fileStorage() async throws {
         // 1. Get the system temporary directory URL
         let tempDir = FileManager.default.temporaryDirectory
 
@@ -66,15 +66,15 @@ struct JSONFilePersistentKeyValueStorageTests {
             fileUrl: fileURL
         )
 
-        #expect(throws: (any Error).self) {
-            _ = try storage.load()
+        await #expect(throws: (any Error).self) {
+            _ = try await storage.load()
         }
 
         let sequence = [(key: 1, value: "1"), (key: 2, value: "2")]
 
-        try storage.save(sequence)
+        try await storage.save(sequence)
 
-        let items = try Array(storage.load())
+        let items = try await Array(storage.load())
         #expect(sequence.count == items.count)
 
         #expect(sequence[0].key == 1)
