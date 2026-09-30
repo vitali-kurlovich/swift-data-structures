@@ -233,8 +233,8 @@ func MT19937_0x203e000e1dda79a0() {
 }
 
 @Test("MT19937 UUID")
-func MT19937_UUID() {
-    let uuid = UUID(uuidString: "4A442C1E-93F6-4196-9087-0834A0EFAE7D")!
+func MT19937_UUID() throws {
+    let uuid = try #require(UUID(uuidString: "4A442C1E-93F6-4196-9087-0834A0EFAE7D"))
 
     var generator = MT19937RandomGenegator(uuid: uuid)
 

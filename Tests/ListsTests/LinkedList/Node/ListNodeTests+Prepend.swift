@@ -7,7 +7,7 @@ import Testing
 
 extension ListNodeTests {
     @Test("Prepend")
-    func prepend() throws {
+    func prepend() {
         let node0 = ListNode(0)
         // [node0]
         #expect(node0.prev == nil)

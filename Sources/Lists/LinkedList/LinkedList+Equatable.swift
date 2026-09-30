@@ -4,6 +4,6 @@
 
 extension LinkedList: Equatable where T: Equatable {
     public static func == (lhs: LinkedList<T>, rhs: LinkedList<T>) -> Bool {
-        return lhs === rhs || lhs.first == rhs.first
+        lhs === rhs || lhs.first == rhs.first
     }
 }

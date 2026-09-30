@@ -7,7 +7,7 @@ import Testing
 
 extension LinkedListTests {
     @Test("Drop First")
-    func dropFirst() throws {
+    func dropFirst() {
         let list = LinkedList<Int>()
 
         #expect(list.isEmpty)
@@ -97,7 +97,7 @@ extension LinkedListTests {
     }
 
     @Test("Drop Last")
-    func dropLast() throws {
+    func dropLast() {
         let list = LinkedList<Int>()
 
         #expect(list.isEmpty)

@@ -82,14 +82,24 @@ extension MT19937x32 {
 
 private extension UInt32 {
     @inline(__always)
-    static var UPPER_MASK: UInt32 { 0x8000_0000 }
+    static var UPPER_MASK: UInt32 {
+        0x8000_0000
+    }
+
     @inline(__always)
-    static var LOWER_MASK: UInt32 { 0x7FFF_FFFF }
+    static var LOWER_MASK: UInt32 {
+        0x7FFF_FFFF
+    }
 }
 
 private extension Int {
     @inline(__always)
-    static var N: Int { 624 }
+    static var N: Int {
+        624
+    }
+
     @inline(__always)
-    static var M: Int { 397 }
+    static var M: Int {
+        397
+    }
 }

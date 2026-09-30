@@ -64,16 +64,28 @@ extension MT19937x64 {
 
 private extension UInt64 {
     @inline(__always)
-    static var MATRIX_A: UInt64 { 0xB502_6F5A_A966_19E9 }
+    static var MATRIX_A: UInt64 {
+        0xB502_6F5A_A966_19E9
+    }
+
     @inline(__always)
-    static var UM: UInt64 { 0xFFFF_FFFF_8000_0000 } /* Most significant 33 bits */
+    static var UM: UInt64 {
+        0xFFFF_FFFF_8000_0000
+    } /* Most significant 33 bits */
     @inline(__always)
-    static var LM: UInt64 { 0x7FFF_FFFF } /* Least significant 31 bits */
+    static var LM: UInt64 {
+        0x7FFF_FFFF
+    } /* Least significant 31 bits */
 }
 
 private extension Int {
     @inline(__always)
-    static var NN: Int { 312 }
+    static var NN: Int {
+        312
+    }
+
     @inline(__always)
-    static var MM: Int { 156 }
+    static var MM: Int {
+        156
+    }
 }

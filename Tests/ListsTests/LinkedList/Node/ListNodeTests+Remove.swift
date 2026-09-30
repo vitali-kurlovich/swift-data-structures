@@ -7,7 +7,7 @@ import Testing
 
 extension ListNodeTests {
     @Test("Remove")
-    func remove() throws {
+    func remove() {
         let node0 = ListNode(0)
         // [node0]
         #expect(node0.prev == nil)

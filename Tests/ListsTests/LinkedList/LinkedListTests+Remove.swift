@@ -7,7 +7,7 @@ import Testing
 
 extension LinkedListTests {
     @Test("Remove")
-    func remove() throws {
+    func remove() {
         let list = LinkedList<Int>()
         // []
 
@@ -46,7 +46,7 @@ extension LinkedListTests {
     }
 
     @Test("Remove All")
-    func removeAll() throws {
+    func removeAll() {
         let list = LinkedList<Int>()
         // []
         var node0 = list.append(0)

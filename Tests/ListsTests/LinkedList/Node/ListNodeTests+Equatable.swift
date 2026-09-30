@@ -7,7 +7,7 @@ import Testing
 
 extension ListNodeTests {
     @Test("Equatable")
-    func equal() throws {
+    func equal() {
         let l0 = ListNode(0)
         #expect(l0 == l0)
 
@@ -30,7 +30,7 @@ extension ListNodeTests {
     }
 
     @Test("Equatable deep")
-    func deep_equal() throws {
+    func deep_equal() {
         let l0 = ListNode(0)
         let l1 = ListNode(1)
         let l2 = ListNode(2)

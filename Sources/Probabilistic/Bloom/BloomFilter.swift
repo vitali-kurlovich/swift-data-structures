@@ -69,41 +69,55 @@ public extension BloomFilter {
 /// Configuration for a 128-bit Bloom filter
 public enum Size128: BloomFilterConfiguration {
     @inlinable
-    public static var size: UInt { 128 }
+    public static var size: UInt {
+        128
+    }
 }
 
 /// Configuration for a 256-bit Bloom filter
 public enum Size256: BloomFilterConfiguration {
     @inlinable
-    public static var size: UInt { 256 }
+    public static var size: UInt {
+        256
+    }
 }
 
 /// Configuration for a 512-bit Bloom filter
 public enum Size512: BloomFilterConfiguration {
     @inlinable
-    public static var size: UInt { 512 }
+    public static var size: UInt {
+        512
+    }
 }
 
 /// Configuration for a 1024-bit Bloom filter
 public enum Size1024: BloomFilterConfiguration {
     @inlinable
-    public static var size: UInt { 1024 }
+    public static var size: UInt {
+        1024
+    }
 }
 
 /// Configuration for a 2048-bit Bloom filter
 public enum Size2048: BloomFilterConfiguration {
     @inlinable
-    public static var size: UInt { 2048 }
+    public static var size: UInt {
+        2048
+    }
 }
 
 /// Configuration for a 4096-bit Bloom filter
 public enum Size4096: BloomFilterConfiguration {
     @inlinable
-    public static var size: UInt { 4096 }
+    public static var size: UInt {
+        4096
+    }
 }
 
 /// Configuration for a 8192-bit Bloom filter
 public enum Size8192: BloomFilterConfiguration {
     @inlinable
-    public static var size: UInt { 8192 }
+    public static var size: UInt {
+        8192
+    }
 }

@@ -7,7 +7,7 @@ import Testing
 
 extension LinkedListTests {
     @Test("Copy")
-    func copy() throws {
+    func copy() {
         let list = LinkedList<Int>()
 
         #expect(list.copy() == list)

@@ -3,17 +3,15 @@
 //
 
 public extension Sequence {
-    /// Returns the elements of the sequence, shuffled using the shuffling algorithm and  the given generator
-    /// as a source for randomness.
-    ///
-    /// - Parameter algorithm: The shuffle algorithm to use when shuffling
-    ///
-    /// - Parameter generator: The random number generator to use when shuffling
-    ///   the sequence.
-    /// - Returns: An array of this sequence's elements in a shuffled order.
-    ///
-    /// - Complexity: Depends on algorithm
-
+    /**
+     Returns the elements of the sequence, shuffled using the shuffling algorithm and  the given generator
+     as a source for randomness.
+     - Parameter algorithm: The shuffle algorithm to use when shuffling
+     - Parameter generator: The random number generator to use when shuffling
+       the sequence.
+     - Returns: An array of this sequence's elements in a shuffled order.
+     - Complexity: Depends on algorithm
+     */
     @inlinable func shuffled(algorithm: ShuffleAlgorithm = .default, using generator: inout some RandomNumberGenerator) -> [Element] {
         var array = Array(self)
         array.shuffle(algorithm: algorithm, using: &generator)

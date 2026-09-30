@@ -122,7 +122,7 @@ func mt19937_64_seed_0() {
     #expect(result == expected)
 }
 
-// 0x203e000e1dda79a0
+/// 0x203e000e1dda79a0
 @Test("mt19937_64 seed 0x203e000e1dda79a0")
 func mt19937_64_seed_0x203e000e1dda79a0() {
     var generator = MT19937x64(seed: 0x203E_000E_1DDA_79A0)

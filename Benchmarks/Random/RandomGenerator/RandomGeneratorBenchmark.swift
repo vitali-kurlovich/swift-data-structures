@@ -19,7 +19,7 @@ struct RandomGeneratorBenchmark<R: RandomNumberGenerator>: CustomStringConvertib
     }
 
     func run() {
-        var generator = self.generator
+        var generator = generator
 
         for _ in 0 ..< count {
             _ = UInt64.random(in: UInt64.min ... UInt64.max, using: &generator)

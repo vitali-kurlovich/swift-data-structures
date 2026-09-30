@@ -25,47 +25,47 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Lists",
+            name: "Lists"
         ),
 
         .target(
             name: "Caches",
             dependencies: [
                 "Lists",
-            ],
+            ]
         ),
 
         .target(
             name: "Probabilistic",
             dependencies: [
                 .product(name: "Collections", package: "swift-collections"),
-            ],
+            ]
         ),
 
         .target(
             name: "Random",
             dependencies: [
-            ],
+            ]
         ),
 
         .testTarget(
             name: "ListsTests",
-            dependencies: ["Lists"],
+            dependencies: ["Lists"]
         ),
 
         .testTarget(
             name: "CachesTests",
-            dependencies: ["Lists", "Caches"],
+            dependencies: ["Lists", "Caches"]
         ),
 
         .testTarget(
             name: "ProbabilisticTests",
-            dependencies: ["Probabilistic"],
+            dependencies: ["Probabilistic"]
         ),
 
         .testTarget(
             name: "RandomTests",
-            dependencies: ["Random"],
+            dependencies: ["Random"]
         ),
 
         .executableTarget(
@@ -75,9 +75,9 @@ let package = Package(
                 .product(name: "Benchmarks", package: "swift-benchmarks"),
                 "Lists", "Caches", "Probabilistic", "Random",
             ],
-            path: "Benchmarks",
+            path: "Benchmarks"
 
         ),
     ],
-    swiftLanguageModes: [.v6],
+    swiftLanguageModes: [.v6]
 )

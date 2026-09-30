@@ -7,7 +7,7 @@ import Testing
 
 extension LinkedListTests {
     @Test("Equatable")
-    func equal() throws {
+    func equal() {
         let left = LinkedList<Int>()
         let right = LinkedList<Int>()
 

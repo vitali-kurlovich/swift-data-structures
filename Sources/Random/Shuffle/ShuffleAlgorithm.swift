@@ -30,9 +30,9 @@ extension ShuffleAlgorithm: CustomStringConvertible {
     public var description: String {
         switch self {
         case .default:
-            return "default"
+            "default"
         case let .faro(configuration):
-            return "faro(\(configuration.rounds))"
+            "faro(\(configuration.rounds))"
         }
     }
 }

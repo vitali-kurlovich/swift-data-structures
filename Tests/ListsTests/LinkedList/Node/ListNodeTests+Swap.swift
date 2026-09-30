@@ -7,7 +7,7 @@ import Testing
 
 extension ListNodeTests {
     @Test("Swap")
-    func swap() throws {
+    func swap() {
         let node0 = ListNode(0)
         // [node0]
         #expect(node0.prev == nil)

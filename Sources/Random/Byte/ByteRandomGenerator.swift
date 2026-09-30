@@ -2,7 +2,7 @@
 //  Created by Vitali Kurlovich on 5.08.25.
 //
 
-public struct ByteRandomGenerator<T> where T: RandomNumberGenerator {
+public struct ByteRandomGenerator<T: RandomNumberGenerator> {
     @usableFromInline var generator: T
 
     @usableFromInline var last: UInt64 = 0

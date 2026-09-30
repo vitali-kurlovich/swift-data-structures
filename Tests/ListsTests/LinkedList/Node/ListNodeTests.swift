@@ -10,7 +10,7 @@ struct ListNodeTests {}
 
 extension ListNodeTests {
     @Test("Cycles")
-    func isCyclic() throws {
+    func isCyclic() {
         let first = ListNode(10)
 
         first._next = first

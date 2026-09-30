@@ -7,7 +7,7 @@ import Testing
 
 extension LinkedListTests {
     @Test("Insert After")
-    func insertAfter() throws {
+    func insertAfter() {
         let list = LinkedList<Int>()
         // []
         let node0 = list.append(0)
@@ -190,7 +190,7 @@ extension LinkedListTests {
     }
 
     @Test("Insert Before")
-    func insertBefore() throws {
+    func insertBefore() {
         let list = LinkedList<Int>()
         // []
         let node0 = list.append(0)

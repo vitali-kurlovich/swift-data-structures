@@ -22,6 +22,6 @@ extension LinkedListTests {
 
         #expect(list !== result)
         #expect(list == result)
-        #expect(list.map { $0 } == [0, 10, 20])
+        #expect(list.map(\.self) == [0, 10, 20])
     }
 }

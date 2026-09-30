@@ -30,8 +30,8 @@ struct ShuffleBenchmark<R: RandomNumberGenerator>: CustomStringConvertible {
     func run() {
         assert(arraySize > 0)
 
-        var generator = self.generator
-        var array = (1 ... arraySize).map { $0 }
+        var generator = generator
+        var array = (1 ... arraySize).map(\.self)
 
         for _ in 0 ..< count {
             array.shuffle(algorithm: algorithm, using: &generator)

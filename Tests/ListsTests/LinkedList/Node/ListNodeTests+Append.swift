@@ -7,7 +7,7 @@ import Testing
 
 extension ListNodeTests {
     @Test("Append")
-    func append() throws {
+    func append() {
         let node0 = ListNode(0)
         // [node0]
         #expect(node0.prev == nil)

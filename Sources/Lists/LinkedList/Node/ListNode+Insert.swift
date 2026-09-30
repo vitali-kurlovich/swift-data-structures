@@ -13,7 +13,7 @@ extension ListNode {
 
         node.remove()
 
-        let next = self.next
+        let next = next
 
         setNext(node)
         node.setNext(next)
@@ -28,7 +28,7 @@ extension ListNode {
         }
 
         node.remove()
-        let prev = self.prev
+        let prev = prev
 
         setPrev(node)
         node.setPrev(prev)

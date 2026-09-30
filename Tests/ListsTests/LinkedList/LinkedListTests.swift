@@ -28,7 +28,7 @@ extension LinkedListTests {
 
 extension LinkedListTests {
     @Test("Empty")
-    func empty() throws {
+    func empty() {
         let list = LinkedList<Int>()
 
         #expect(list.isEmpty)
@@ -41,7 +41,7 @@ extension LinkedListTests {
 
 extension LinkedListTests {
     @Test("Count")
-    func count() throws {
+    func count() {
         let list = LinkedList<Int>()
 
         #expect(list.count == 0)
@@ -61,7 +61,7 @@ extension LinkedListTests {
 
 extension LinkedListTests {
     @Test("Contains")
-    func contains() throws {
+    func contains() {
         let list = LinkedList<Int>()
 
         let node0 = ListNode(42)

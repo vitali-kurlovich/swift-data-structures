@@ -11,7 +11,7 @@ extension LinkedList: Sequence {
 }
 
 public extension LinkedList {
-    convenience init<S>(_ s: S) where S: Sequence, S.Element == T {
+    convenience init(_ s: some Sequence<T>) {
         self.init()
         for value in s {
             append(value)

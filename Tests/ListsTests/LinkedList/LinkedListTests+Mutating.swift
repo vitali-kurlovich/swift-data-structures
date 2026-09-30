@@ -7,7 +7,7 @@ import Testing
 
 extension LinkedListTests {
     @Test("Append")
-    func append() throws {
+    func append() {
         let list = LinkedList<Int>()
         // []
 
@@ -211,7 +211,7 @@ extension LinkedListTests {
 
 extension LinkedListTests {
     @Test("Prepend")
-    func prepend() throws {
+    func prepend() {
         let list = LinkedList<Int>()
         // []
 

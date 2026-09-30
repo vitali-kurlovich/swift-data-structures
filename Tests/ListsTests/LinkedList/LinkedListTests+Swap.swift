@@ -7,7 +7,7 @@ import Testing
 
 extension LinkedListTests {
     @Test("Swap")
-    func swap() throws {
+    func swap() {
         let list = LinkedList<Int>()
         // []
         #expect(list.first == nil)

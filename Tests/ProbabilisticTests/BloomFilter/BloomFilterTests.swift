@@ -7,7 +7,7 @@ struct BloomFilterTests {}
 
 extension BloomFilterTests {
     @Test("Mutations")
-    func mutations() throws {
+    func mutations() {
         mutation(type: Size128.self, range: stride(from: 1, to: 2000, by: 4))
         mutation(type: Size256.self, range: stride(from: 1, to: 2000, by: 4))
         mutation(type: Size512.self, range: stride(from: 1, to: 20000, by: 10))
@@ -17,7 +17,7 @@ extension BloomFilterTests {
         mutation(type: Size8192.self, range: stride(from: 1, to: 20000, by: 10))
     }
 
-    func mutation<Configuration>(type _: Configuration.Type, range: StrideTo<Int>) where Configuration: BloomFilterConfiguration {
+    func mutation<Configuration: BloomFilterConfiguration>(type _: Configuration.Type, range: StrideTo<Int>) {
         var bloom = BloomFilter<Configuration, Int>()
 
         for item in range.min()! ..< range.max()! {
