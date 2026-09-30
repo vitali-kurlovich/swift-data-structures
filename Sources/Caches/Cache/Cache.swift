@@ -7,7 +7,8 @@ import Lists
 /**
  An LRU (Least Recently Used) Cache is a data structure that stores a limited number of items, automatically evicting the oldest, least recently accessed data when capacity is reached.
  */
-public final class Cache<Key: Hashable, T> {
+public final class Cache<Key: Hashable, T>: CacheProtocol {
+    public typealias Value = T
     /// The name of the cache.
     public var name: String
 
@@ -62,21 +63,6 @@ public extension Cache {
 }
 
 public extension Cache {
-    subscript(_ key: Key) -> T? {
-        get {
-            pull(key: key)
-        }
-        set {
-            if let newValue {
-                push(key: key, value: newValue)
-            } else {
-                remove(for: key)
-            }
-        }
-    }
-}
-
-public extension Cache {
     /// Returns the value associated with a given key.
     func pull(key: Key) -> T? {
         guard let node = map[key] else {
@@ -89,7 +75,7 @@ public extension Cache {
         return node.value.value
     }
 
-    func push(key: Key, value: T, cost: Int = 0) {
+    func push(key: Key, value: T, cost: Int) {
         assert(cost >= 0)
 
         let stored = KeyValue(cost: cost, key: key, value: value)
